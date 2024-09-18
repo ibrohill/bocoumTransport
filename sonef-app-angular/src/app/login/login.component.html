@@ -1,0 +1,32 @@
+<div class="login-container">
+  <div class="background-image"></div>
+  <div class="login-content">
+    <div class="logo-container">
+      <a class="logo">BOCOUM TRANSPORT <span class="text-primary">.</span></a>
+    </div>
+    <h2>Connexion</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control" placeholder="Entrez votre email" />
+        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)" class="error-message">
+          <div *ngIf="loginForm.get('email')?.errors?.['required']">L'email est requis.</div>
+          <div *ngIf="loginForm.get('email')?.errors?.['email']">L'email doit être valide.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" formControlName="password" class="form-control" placeholder="Entrez votre mot de passe" />
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)" class="error-message">
+          <div *ngIf="loginForm.get('password')?.errors?.['required']">Le mot de passe est requis.</div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success btn-block">Se connecter</button>
+    </form>
+    <div class="register-link">
+      <p>Vous n'avez pas de compte ? <a routerLink="/register">Inscrivez-vous ici</a>.</p>
+    </div>
+  </div>
+</div>

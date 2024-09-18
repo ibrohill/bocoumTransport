@@ -1,0 +1,51 @@
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<app-navigation></app-navigation>
+<!--<div class="hero hero-inner">-->
+<!--  <div class="container">-->
+<!--    <div class="row align-items-center">-->
+<!--      <div class="col-lg-6 mx-auto text-center">-->
+<!--        <div class="intro-wrap">-->
+<!--          <h1 class="mb-0">Réservation</h1>-->
+<!--          <p class="text-white">-->
+<!--            Chez SONEF, nous vous offrons une expérience de réservation simple et efficace pour vos voyages. Explorez nos destinations et réservez votre voyage en quelques clics, en toute tranquillité.-->
+<!--          </p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<br><br><br><br><br>
+<div class="voyage-section container py-5">
+  <h2 class="section-title text-center mb-5">Liste des Voyages Rechercher</h2>
+  <div *ngIf="voyages.length > 0" class="voyage-list row">
+    <div *ngFor="let voyage of voyages" class="voyage-item col-lg-4 col-md-6 mb-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+          <h3 class="voyage-title text-primary mb-3">{{ voyage.depart }} <span class="separator">→</span> {{ voyage.arrivee }}</h3>
+          <p class="voyage-details mb-4">
+            <span class="detail-label font-weight-bold">Date:</span> {{ voyage.date }}<br>
+            <span class="detail-label font-weight-bold">Heure:</span> {{ voyage.heure }}
+          </p>
+          <button class="btn btn-success mt-auto reserve-button" (click)="reserver(voyage.id)">
+            <i class="fas fa-ticket-alt"></i> Réserver
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  <div *ngIf="voyages.length === 0" class="no-voyages text-center mt-5">-->
+<!--    <p class="alert alert-info">Aucun voyage trouvé pour les critères de recherche spécifiés.</p>-->
+<!--  </div>-->
+</div>
+
+
+

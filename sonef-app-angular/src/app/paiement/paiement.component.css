@@ -1,0 +1,82 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-header {
+  border-bottom: 1px solid #ddd;
+  border-radius: 15px 15px 0 0;
+  padding: 1.5rem;
+}
+
+.card-header h1 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.payment-methods .payment-option {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-methods .payment-option:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.payment-logo {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.selected {
+  border: 2px solid #28a745;
+  background: #eaf4ea;
+}
+
+.btn-success {
+  background: #28a745;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.btn-success:hover {
+  background: #218838;
+}
+
+@media (max-width: 768px) {
+  .card-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .payment-logo {
+    max-width: 80px;
+  }
+}

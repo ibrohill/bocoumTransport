@@ -1,0 +1,8 @@
+<div *ngIf="voyagesFiltres.length > 0">
+  <ul>
+    <li *ngFor="let voyage of voyagesFiltres">
+      <p>{{ voyage.depart }} -> {{ voyage.arrivee }} le {{ voyage.date }} pour {{ voyage.nombre_de_personnes }} personnes</p>
+      <button (click)="reserver(voyage.id)">Réserver</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,21 @@
+<app-navigation></app-navigation>
+<br><br><br><br><br><br>
+
+<div class="profile-container">
+  <div class="profile-header">
+    <h2>Mon Profil</h2>
+  </div>
+  <div class="profile-content">
+    <div *ngIf="user; else loading">
+      <div class="profile-info">
+        <p><strong>Nom :</strong> {{ user.name }}</p>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Rôle :</strong> {{ user.role }}</p>
+        <button class="btn btn-primary edit-button" (click)="openProfileModal()">Modifier</button>
+      </div>
+    </div>
+    <ng-template #loading>
+      <p>Chargement des informations du profil...</p>
+    </ng-template>
+  </div>
+</div>

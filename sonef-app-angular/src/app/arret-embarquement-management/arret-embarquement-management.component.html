@@ -1,0 +1,47 @@
+<div>
+  <h2>Liste des Arrêts</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Position</th>
+      <th>Voyage</th>
+      <th *ngIf="isAdmin">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let arret of arrets">
+      <td>{{ arret.nom }}</td>
+      <td>{{ arret.position }}</td>
+      <td>{{ arret.voyage?.depart }} - {{ arret.voyage?.arrivee }}</td>
+      <td *ngIf="isAdmin">
+        <button (click)="editArret(arret)">Modifier</button>
+        <button (click)="deleteArret(arret.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h2>Ajouter un Arrêt</h2>
+  <form (ngSubmit)="addArret()">
+    <input [(ngModel)]="newArret.nom" name="nom" placeholder="Nom" required>
+    <input [(ngModel)]="newArret.position" name="position" placeholder="Position" required>
+    <select [(ngModel)]="newArret.voyage_id" name="voyage_id" required>
+      <option *ngFor="let voyage of voyages" [value]="voyage.id">{{ voyage.depart }} - {{ voyage.arrivee }}</option>
+    </select>
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
+
+<div>
+  <h2>Réserver un Embarquement</h2>
+  <form (ngSubmit)="reserveEmbarquement()">
+    <input [(ngModel)]="reservation.nom" name="nom" placeholder="Nom du Passager" required>
+    <select [(ngModel)]="reservation.arret_id" name="arret_id" required>
+      <option *ngFor="let arret of arrets" [value]="arret.id">{{ arret.nom }} - {{ arret.position }}</option>
+    </select>
+    <button type="submit">Réserver</button>
+  </form>
+</div>

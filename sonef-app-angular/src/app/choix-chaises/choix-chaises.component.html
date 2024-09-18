@@ -1,0 +1,70 @@
+<app-navigation></app-navigation>
+<br><br><br><br><br><br>
+<div class="container">
+  <h2>Vos informations</h2>
+
+  <!-- Formulaire de saisie -->
+  <form (ngSubmit)="onSubmit()" *ngIf="!formSaisi" class="form-container">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" [(ngModel)]="nom" name="nom" placeholder="Votre nom" required>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" id="prenom" [(ngModel)]="prenom" name="prenom" placeholder="Votre prénom" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Votre email" required>
+    </div>
+    <div class="form-group">
+      <label for="telephone">Téléphone</label>
+      <input type="text" id="telephone" [(ngModel)]="telephone" name="telephone" placeholder="Votre téléphone" required>
+    </div>
+    <button type="submit" class="submit-button">Suivant</button>
+  </form>
+
+  <!-- Sélection de chaises -->
+  <div *ngIf="formSaisi" class="chaise-selection">
+    <div class="bus-container">
+      <!-- Légende -->
+      <div class="legende">
+        <div class="disponible">
+          <span></span> Disponible
+        </div>
+        <div class="selected">
+          <span></span> Sélectionnée
+        </div>
+        <div class="indisponible">
+          <span></span> Indisponible
+        </div>
+      </div>
+
+      <!-- Conteneur des chaises -->
+      <div class="chaise-container">
+        <!-- Groupes de chaises -->
+        <div class="bus-row" *ngFor="let row of getChaisesRows()">
+          <div class="bus-seat-group">
+            <div *ngFor="let chaise of row"
+                 [ngClass]="{
+               'disponible': chaise.disponible,
+               'selected': chaise.selected,
+               'indisponible': !chaise.disponible && !chaise.selected
+             }"
+                 (click)="selectChaise(chaise)"
+                 class="chaise">
+              <span class="place-number">{{ chaise.id }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="initiatePayment()" class="payment-button">Payer</button>
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+.container {
+  max-width: 800px;
+}
+
+.card-header {
+  background-color: #f0ad4e;
+}
+
+.btn {
+  width: 100%;
+  text-align: center;
+}
+
+.btn-outline-secondary {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}

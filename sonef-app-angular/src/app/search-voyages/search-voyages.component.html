@@ -1,0 +1,431 @@
+<app-navigation></app-navigation>
+
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+
+<div class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="intro-wrap">
+          <h1 class="mb-5">
+            <span class="d-block">Découvrez BOCOUM TRANSPORT</span>
+            <span>et explorez&nbsp;</span> <span class="typed-words"></span>
+          </h1>
+
+          <div class="row">
+            <div class="col-35">
+              <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="travel-booking-form">
+                <div class="row mb-8">
+                  <div class="col-sm-8 col-md-4 mb-3 mb-lg-0 col-lg-4">
+                    <label for="depart" class="sr-only">Départ</label>
+                    <select id="depart" formControlName="depart" class="form-control">
+                      <option value="" disabled selected>Ville de départ</option>
+                      <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-8 col-md-4 mb-3 mb-lg-0 col-lg-4">
+                    <label for="arrivee" class="sr-only">Arrivée</label>
+                    <select id="arrivee" formControlName="arrivee" class="form-control">
+                      <option value="" disabled selected>Ville d'arrivée</option>
+                      <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-8 col-md-4 mb-3 mb-lg-0 col-lg-4">
+                    <label for="date" class="sr-only">Date</label>
+                    <input id="date" formControlName="date" type="date" class="form-control">
+                  </div>
+                </div>
+                <br>
+                <div class="row align-items-center">
+                  <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                    <button type="submit" class="btn btn-primary btn-block">Rechercher</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="slides">
+          <img src="assets/images/valise%203.jpg" alt="Image"  class="img-fluid active">
+          <img src="assets/images/travel.jpg" alt="Image"  class="img-fluid">
+          <img src="assets/images/valise.jpg" alt="Image" class="img-fluid">
+          <img src="assets/images/abraham-garcia-pPWO8Eajh5I-unsplash.jpg" alt="Image" class="img-fluid">
+          <img src="assets/images/photo-1571046314604-e32adfc8e11e.jpeg" alt="Image" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<app-destination></app-destination>
+
+
+
+<!--<div *ngIf="voyages.length > 0" class="voyage-list">-->
+<!--  <h3>Liste des Voyages</h3>-->
+<!--  <ul class="list-group">-->
+<!--    <li *ngFor="let voyage of voyages" class="list-group-item voyage-item">-->
+<!--      <h4 class="voyage-title">Voyage de {{ voyage.depart }} à {{ voyage.arrivee }}</h4>-->
+<!--      <p><strong>Date:</strong> {{ voyage.date }}</p>-->
+<!--      <p><strong>Heure:</strong> {{ voyage.heure }}</p>-->
+<!--      <a [routerLink]="['/reserver', voyage.id]" class="btn btn-primary">Réserver</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+
+<!--<div class="untree_co-section">-->
+<!--  <div class="container">-->
+<!--    <div class="row mb-5 justify-content-center">-->
+<!--      <div class="col-lg-6 text-center">-->
+<!--        <h2 class="section-title text-center mb-3">Nos services</h2>-->
+<!--        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row align-items-stretch">-->
+<!--      <div class="col-lg-4 order-lg-1">-->
+<!--        <div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('assets/images/valise 3.jpg');"></div></div></div>-->
+<!--      </div>-->
+
+<!--      <div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1" >-->
+
+<!--        <div class="feature-1 d-md-flex">-->
+<!--          <div class="align-self-center">-->
+<!--            <span class="flaticon-house display-4 text-primary"></span>-->
+<!--            <h3>Beautiful Condo</h3>-->
+<!--            <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="feature-1 ">-->
+<!--          <div class="align-self-center">-->
+<!--            <span class="flaticon-restaurant display-4 text-primary"></span>-->
+<!--            <h3>Restaurants & Cafe</h3>-->
+<!--            <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--      <div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-3" >-->
+
+<!--        <div class="feature-1 d-md-flex">-->
+<!--          <div class="align-self-center">-->
+<!--            <span class="flaticon-mail display-4 text-primary"></span>-->
+<!--            <h3>Easy to Connect</h3>-->
+<!--            <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="feature-1 d-md-flex">-->
+<!--          <div class="align-self-center">-->
+<!--            <span class="flaticon-phone-call display-4 text-primary"></span>-->
+<!--            <h3>24/7 Support</h3>-->
+<!--            <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="untree_co-section count-numbers py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+        <div class="counter-wrap">
+          <div class="counter">
+            <span class="" data-number="9000">0</span>
+          </div>
+          <span class="caption">Nombre de voyage</span>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+        <div class="counter-wrap">
+          <div class="counter">
+            <span>+</span><span class="" data-number="85 ">0</span><span>%</span>
+          </div>
+          <span class="caption">Client Satisfait</span>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+        <div class="counter-wrap">
+          <div class="counter">
+            <span class="" data-number="50">0</span>
+          </div>
+          <span class="caption"> Destination</span>
+        </div>
+      </div>
+      <div class="col-6 col-sm-6 col-md-6 col-lg-3">
+        <div class="counter-wrap">
+          <div class="counter">
+            <span class="" data-number="100">0</span>
+          </div>
+          <span class="caption"> Nombre d’ employee</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="voyage-section container">-->
+<!--  <h2 class="section-title text-center mb-4">Liste des Voyages</h2>-->
+<!--  <div *ngIf="voyages.length > 0" class="voyage-list row">-->
+<!--    <div *ngFor="let voyage of voyages | slice:0:10" class="voyage-item col-md-6 mb-4">-->
+<!--      <div class="card shadow-sm">-->
+<!--        <div class="card-body">-->
+<!--          <h3 class="voyage-title">{{ voyage.depart }} <span class="separator">→</span> {{ voyage.arrivee }}</h3>-->
+<!--          <p class="voyage-details">-->
+<!--            <span class="detail-label">Date:</span> {{ voyage.date }}<br>-->
+<!--            <span class="detail-label">Heure:</span> {{ voyage.heure }}-->
+<!--          </p>-->
+<!--          <button class="btn btn-primary btn-block reserve-button" >Réserver</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div *ngIf="voyages.length === 0" class="no-voyages">-->
+<!--    <p>Aucun voyage disponible pour le moment.</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="untree_co-section">
+  <div class="container">
+    <div class="row text-center justify-content-center mb-5">
+      <div class="col-lg-7"><h2 class="section-title text-center">Popular Destination</h2></div>
+    </div>
+
+    <div class="owl-carousel owl-3-slider">
+      <div class="item">
+        <a class="media-thumb" href="assets/images/49917f0c322aa0aa8d9bee98bd5659c2.jpg" data-fancybox="gallery">
+          <div class="media-text">
+            <h3>Monument de la rennaisance</h3>
+            <span class="location">Dakar</span>
+          </div>
+          <img src="assets/images/49917f0c322aa0aa8d9bee98bd5659c2.jpg" alt="Image" class="img-fluid">
+
+        </a>
+      </div>
+
+      <div class="item">
+        <a class="media-thumb" href="assets/images/6861ec10a13a0232f97786b009ed54dd.jpg" data-fancybox="gallery">
+          <div class="media-text">
+
+            <span class="location">Saint-Louis</span>
+          </div>
+          <img src="assets/images/6861ec10a13a0232f97786b009ed54dd.jpg"  alt="Image" class="img-fluid">
+        </a>
+      </div>
+
+      <div class="item">
+        <a class="media-thumb" href="assets/images/1e488d630af65cc0a6461ad687c60040.jpg" data-fancybox="gallery">
+          <div class="media-text">
+
+            <span class="location">Baobab</span>
+          </div>
+          <img src="assets/images/1e488d630af65cc0a6461ad687c60040.jpg" alt="Image" class="img-fluid">
+        </a>
+      </div>
+
+
+      <div class="item">
+        <a class="media-thumb" href="assets/images/114e6819e4f3013aea304a4e5389ea2c.jpg" data-fancybox="gallery">
+          <div class="media-text">
+            <span class="location">Touba</span>
+          </div>
+          <img src="assets/images/114e6819e4f3013aea304a4e5389ea2c.jpg" alt="Image" class="img-fluid">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--<div class="untree_co-section testimonial-section mt-5">-->
+<!--  <div class="container">-->
+<!--    <div class="row justify-content-center">-->
+<!--      <div class="col-lg-7 text-center">-->
+<!--        <h2 class="section-title text-center mb-5">Temoiniage</h2>-->
+
+<!--        <div class="owl-single owl-carousel no-nav">-->
+
+
+<!--          <div class="testimonial mx-auto">-->
+<!--            <figure class="img-wrap">-->
+<!--              <img src="assets/images/oumzo.jpg" alt="Image" class="img-fluid">-->
+<!--            </figure>-->
+<!--            <h3 class="name">Oumzo le King</h3>-->
+<!--            <blockquote>-->
+<!--              <p>&ldquo;Voyager avec SONEF a été une expérience inoubliable. Le service client est exceptionnel et les voyages sont toujours bien organisés. Je recommande vivement!&rdquo;</p>-->
+<!--            </blockquote>-->
+<!--          </div>-->
+
+<!--          <div class="testimonial mx-auto">-->
+<!--            <figure class="img-wrap">-->
+<!--              <img src="assets/images/salif.jpg" alt="Image" class="img-fluid">-->
+<!--            </figure>-->
+<!--            <h3 class="name">Salif Bocoum</h3>-->
+<!--            <blockquote>-->
+<!--              <p>&ldquo;SONEF a rendu mes voyages d'affaires beaucoup plus simples et agréables. Les trajets sont confortables et les horaires sont toujours respectés. Une agence de confiance!&rdquo;</p>-->
+<!--            </blockquote>-->
+<!--          </div>-->
+
+<!--          <div class="testimonial mx-auto">-->
+<!--            <figure class="img-wrap">-->
+<!--              <img src="assets/images/bano.jpg" alt="Image" class="img-fluid">-->
+<!--            </figure>-->
+<!--            <h3 class="name">Bano Bocoum</h3>-->
+<!--            <blockquote>-->
+<!--              <p>&ldquo;Je suis très satisfaite des services de SONEF. Leur attention aux détails et leur engagement envers la satisfaction des clients font toute la différence. Un choix incontournable pour voyager!&rdquo;</p>-->
+<!--            </blockquote>-->
+<!--          </div>-->
+
+
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+
+
+<!--<div class="untree_co-section">-->
+<!--  <div class="container">-->
+<!--    <div class="row justify-content-between align-items-center">-->
+
+<!--      <div class="col-lg-6">-->
+<!--        <figure class="img-play-video">-->
+<!--          <a id="play-video" class="video-play-button" href="https://www.youtube.com/watch?v=mwtbEGNABWU" data-fancybox>-->
+<!--            <span></span>-->
+<!--          </a>-->
+<!--          <img src="assets/images/hero-slider-2.jpg" alt="Image" class="img-fluid rounded-20">-->
+<!--        </figure>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-5">-->
+<!--        <h2 class="section-title text-left mb-4">Take a look at Tour Video</h2>-->
+<!--        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>-->
+
+<!--        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>-->
+
+<!--        <ul class="list-unstyled two-col clearfix">-->
+<!--          <li>Outdoor recreation activities</li>-->
+<!--          <li>Airlines</li>-->
+<!--          <li>Car Rentals</li>-->
+<!--          <li>Cruise Lines</li>-->
+<!--          <li>Hotels</li>-->
+<!--          <li>Railways</li>-->
+<!--          <li>Travel Insurance</li>-->
+<!--          <li>Package Tours</li>-->
+<!--          <li>Insurance</li>-->
+<!--          <li>Guide Books</li>-->
+<!--        </ul>-->
+
+<!--        <p><a href="#" class="btn btn-primary">Get Started</a></p>-->
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+<!--&lt;!&ndash;<div class="py-5 cta-section">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="row text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
+<!--&lt;!&ndash;        <h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<div class="site-footer">-->
+<!--  <div class="inner first">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-6 col-lg-4">-->
+<!--          <div class="widget">-->
+<!--            <h3 class="heading">About Tour</h3>-->
+<!--            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
+<!--          </div>-->
+<!--          <div class="widget">-->
+<!--            <ul class="list-unstyled social">-->
+<!--              <li><a href="#"><span class="icon-twitter"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-instagram"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-facebook"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-linkedin"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-dribbble"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-pinterest"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-apple"></span></a></li>-->
+<!--              <li><a href="#"><span class="icon-google"></span></a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-2 pl-lg-5">-->
+<!--          <div class="widget">-->
+<!--            <h3 class="heading">Pages</h3>-->
+<!--            <ul class="links list-unstyled">-->
+<!--              <li><a href="#">Blog</a></li>-->
+<!--              <li><a href="#">About</a></li>-->
+<!--              <li><a href="#">Contact</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-2">-->
+<!--          <div class="widget">-->
+<!--            <h3 class="heading">Resources</h3>-->
+<!--            <ul class="links list-unstyled">-->
+<!--              <li><a href="#">Blog</a></li>-->
+<!--              <li><a href="#">About</a></li>-->
+<!--              <li><a href="#">Contact</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6 col-lg-4">-->
+<!--          <div class="widget">-->
+<!--            <h3 class="heading">Contact</h3>-->
+<!--            <ul class="list-unstyled quick-info links">-->
+<!--              <li class="email"><a href="#">mail@example.com</a></li>-->
+<!--              <li class="phone"><a href="#">+1 222 212 3819</a></li>-->
+<!--              <li class="address"><a href="#">43 Raymouth Rd. Baltemoer, London 3910</a></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div id="overlayer"></div>-->
+<!--<div class="loader">-->
+<!--  <div class="spinner-border" role="status">-->
+<!--    <span class="sr-only">Loading...</span>-->
+<!--  </div>-->
+<!--</div>-->
+
+

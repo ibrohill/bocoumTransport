@@ -1,0 +1,15 @@
+<!-- src/app/reply/reply.component.html -->
+<div class="reply-container">
+  <h2>Répondre au Message</h2>
+  <form (ngSubmit)="sendReply()" #replyForm="ngForm">
+    <div>
+      <label for="email">E-mail :</label>
+      <input type="email" id="email" [(ngModel)]="reply.email" name="email" required />
+    </div>
+    <div>
+      <label for="message">Message :</label>
+      <textarea id="message" [(ngModel)]="reply.message" name="message" required></textarea>
+    </div>
+    <button type="submit">Envoyer</button>
+  </form>
+</div>

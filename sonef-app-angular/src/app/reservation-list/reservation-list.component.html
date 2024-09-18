@@ -1,0 +1,29 @@
+<h4>Liste des Réservations</h4>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Voyageur ID</th>
+    <th>Départ</th>
+    <th>Arrivée</th>
+    <th>Date</th>
+    <th>Heure</th>
+    <th>Nombre de Personnes</th>
+    <th>Prix Total</th>
+    <th>Statut</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let reservation of reservations">
+    <td>{{ reservation.id }}</td>
+    <td>{{ reservation.voyageur_id.nom }}</td>z
+    <td>{{ reservation.depart }}</td>
+    <td>{{ reservation.arrivee }}</td>
+    <td>{{ reservation.dateReservation }}</td>
+    <td>{{ reservation.heure }}</td>
+    <td>{{ reservation.nombrePersonnes }}</td>
+    <td>{{ reservation.montantTotal | currency:'XOF':'symbol' }}</td>
+    <td>{{ reservation.statut }}</td>
+  </tr>
+  </tbody>
+</table>

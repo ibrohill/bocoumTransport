@@ -1,0 +1,34 @@
+<div class="arret-management">
+  <h2 class="title">Liste des Arrêts</h2>
+  <table class="arret-table">
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Position</th>
+      <th>Voyage (Départ - Arrivée)</th>
+      <th *ngIf="getUserRole() === 'admin'">Actions</th> <!-- Afficher la colonne d'actions seulement pour les admins -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let arret of arrets">
+      <td>{{ arret.nom }}</td>
+      <td>{{ arret.position }}</td>
+      <td>{{ arret.voyage.depart }} - {{ arret.voyage.arrivee }}</td>
+      <td *ngIf="getUserRole() === 'admin'">
+        <button (click)="editArret(arret)">Modifier</button>
+        <button (click)="deleteArret(arret.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="add-arret" *ngIf="getUserRole() === 'admin'">
+  <h2>Ajouter un Arrêt</h2>
+  <form (ngSubmit)="addArret()">
+    <input [(ngModel)]="newArret.nom" name="nom" placeholder="Nom" required>
+    <input [(ngModel)]="newArret.position" name="position" placeholder="Position" required>
+    <input [(ngModel)]="newArret.voyage_id" name="voyage_id" placeholder="Voyage ID" required>
+    <button type="submit">Ajouter</button>
+  </form>
+</div>

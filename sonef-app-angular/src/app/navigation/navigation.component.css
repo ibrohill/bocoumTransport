@@ -1,0 +1,25 @@
+.site-menu li a i {
+  font-size: 20px; /* Ajustez la taille des icônes selon vos besoins */
+  cursor: pointer;
+}
+
+.site-menu li a i:hover {
+  color: #007bff; /* Couleur au survol */
+}
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 15px;
+}
+.clickable-link {
+  color: blue;
+  text-decoration: none;
+  cursor: pointer; /* Change le curseur en main lors du survol */
+}
+
+.clickable-link:hover {
+  color: darkblue; /* Change la couleur lors du survol */
+  text-decoration: underline; /* Ajoute une ligne soulignée lors du survol */
+}

@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-header bg-warning text-white">
+      <h1 class="text-light mb-0">Confirmation de Réservation</h1>
+    </div>
+    <div class="card-body">
+      <p><strong>Nom :</strong> {{ nom }}</p>
+      <p><strong>Prénom :</strong> {{ prenom }}</p>
+      <p><strong>Email :</strong> {{ email }}</p>
+      <p><strong>Téléphone :</strong> {{ telephone }}</p>
+      <p><strong>Nombre de personnes :</strong> {{ nombrePersonnes }}</p>
+      <p><strong>Chaises sélectionnées :</strong> {{ chaisesSelectionnees.join(', ') }}</p>
+
+      <!-- Boutons d'action -->
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-success btn-block" (click)="confirmerReservation() ">Confirmer</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-danger btn-block" (click)="annulerReservation()">Annuler</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary btn-block" (click)="modifierReservation()">Modifier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

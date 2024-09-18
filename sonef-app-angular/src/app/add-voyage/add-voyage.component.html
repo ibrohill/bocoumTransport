@@ -1,0 +1,48 @@
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+
+
+<form [formGroup]="voyageForm" (ngSubmit)="onSubmit()" class="travel-booking-form">
+
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <label for="depart">Départ</label>
+      <select id="depart" formControlName="depart" class="form-control">
+        <option value="" disabled selected>Ville de départ</option>
+        <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="arrivee">Arrivée</label>
+      <select id="arrivee" formControlName="arrivee" class="form-control">
+        <option value="" disabled selected>Ville d'arrivée</option>
+        <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="date">Date</label>
+      <input id="date" formControlName="date" type="date" class="form-control" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="heure">Heure</label>
+      <select id="heure" formControlName="heure" class="form-control">
+        <option value="" disabled selected>Sélectionner l'heure de départ</option>
+        <option value="08:00">08:00</option>
+        <option value="17:00">17:00</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="submit" [disabled]="!voyageForm.valid" class="btn btn-primary btn-block">Ajouter Voyage</button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,34 @@
+<div>
+  <h2>Liste des Embarquements</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Heure</th>
+      <th>Voyage ID</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let embarquement of embarquements">
+      <td>{{ embarquement.nom }}</td>
+      <td>{{ embarquement.heure }}</td>
+      <td>{{ embarquement.voyage_id }}</td>
+      <td>
+        <button (click)="editEmbarquement(embarquement)">Modifier</button>
+        <button (click)="deleteEmbarquement(embarquement.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h2>Ajouter un Embarquement</h2>
+  <form (ngSubmit)="addEmbarquement()">
+    <input [(ngModel)]="newEmbarquement.nom" name="nom" placeholder="Nom" required>
+    <input [(ngModel)]="newEmbarquement.heure" name="heure" placeholder="Heure" required>
+    <input [(ngModel)]="newEmbarquement.voyage_id" name="voyage_id" placeholder="Voyage ID" required>
+    <button type="submit">Ajouter</button>
+  </form>
+</div>

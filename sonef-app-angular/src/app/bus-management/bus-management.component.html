@@ -1,0 +1,88 @@
+
+<div class="container">
+  <h2>Gestion des Bus</h2>
+  <section class="bus-statistics-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Statistiques des Bus</h2>
+      <div class="row">
+        <!-- Total buses -->
+        <div class="col-lg-4 mb-4">
+          <div class="card text-center shadow">
+            <div class="card-body">
+              <h5 class="card-title">Nombre total de bus</h5>
+              <p class="display-4 text-primary">{{ busTotal }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active buses -->
+        <div class="col-lg-4 mb-4">
+          <div class="card text-center shadow">
+            <div class="card-body">
+              <h5 class="card-title">Bus actifs</h5>
+              <p class="display-4 text-success">{{ busActifs }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inactive buses -->
+        <div class="col-lg-4 mb-4">
+          <div class="card text-center shadow">
+            <div class="card-body">
+              <h5 class="card-title">Bus inactifs</h5>
+              <p class="display-4 text-danger">{{ busInactifs }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Form to add a new bus -->
+  <form (ngSubmit)="addBus()" #busForm="ngForm">
+    <div>
+      <label for="nom">Nom du Bus:</label>
+      <input id="nom" [(ngModel)]="newBus.nom" name="nom" required>
+    </div>
+
+    <div>
+      <label for="nombre_places">Nombre de Places:</label>
+      <input id="nombre_places" [(ngModel)]="newBus.nombre_places" name="nombre_places" type="number" required>
+    </div>
+    <div>
+      <label for="voyage_id">Voyage:</label>
+      <select id="voyage_id" [(ngModel)]="newBus.voyage_id" name="voyage_id" required>
+        <option *ngFor="let voyage of voyages" [value]="voyage.id">
+          {{ voyage.depart }} - {{ voyage.arrivee }}
+        </option>
+      </select>
+    </div>
+
+
+    <button type="submit" [disabled]="!busForm.form.valid">Ajouter le Bus</button>
+  </form>
+
+
+  <!-- Display list of buses -->
+  <h3>Liste des Bus</h3>
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th>Nombre de Places</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let bus of buses">
+      <td>{{ bus.nom }}</td>
+      <td>{{ bus.nombre_places }}</td>
+      <td>{{ bus.status }}</td>
+
+      <td class="actions">
+        <button (click)="activateBus(bus.id)" *ngIf="bus.status !== 'active'">Activer</button>
+        <button (click)="desactiverBus(bus.id)" *ngIf="bus.status === 'active'" class="btn btn-danger">Désactiver</button>
+        <button (click)="deleteBus(bus.id)">Supprimer</button>
+      </td>
+
+    </tr>
+  </table>
+
+</div>

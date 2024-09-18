@@ -1,0 +1,74 @@
+<!--&lt;!&ndash; src/app/contact/contact.component.html &ndash;&gt;-->
+<!--<div class="contact-container">-->
+<!--  <h2>Contactez-nous</h2>-->
+<!--  <p>Nous sommes disponibles 24/7 pour vous aider.</p>-->
+<!--  <p>Appelez-nous au : <a href="tel:+221778727942">+221 77-872-79-42</a></p>-->
+<!--  <form (ngSubmit)="sendEmail()" #contactForm="ngForm">-->
+<!--    <div>-->
+<!--      <label for="name">Nom :</label>-->
+<!--      -->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="email">E-mail :</label>-->
+<!--      -->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="message">Message :</label>-->
+<!--      -->
+<!--    </div>-->
+<!--    <button type="submit">Envoyer</button>-->
+<!--  </form>-->
+<!--</div>-->
+
+
+<app-navigation></app-navigation>
+<br><br><br><br><br>
+<div class="untree_co-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+          <form (ngSubmit)="sendEmail()" #contactForm="ngForm" class="contact-form" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="text-black" for="name">Nom</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="contact.name" name="name" required />
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-black" for="email">Email address</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="contact.email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="text-black" for="message">Message</label>
+            <textarea id="message" class="form-control" [(ngModel)]="contact.message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+        </form>
+      </div>
+      <div class="col-lg-5 ml-auto">
+        <div class="quick-contact-item d-flex align-items-center mb-4">
+          <span class="flaticon-house"></span>
+          <address class="text">
+            Senegal, dakar, Grand-Yoff rue GY-513
+          </address>
+        </div>
+        <div class="quick-contact-item d-flex align-items-center mb-4">
+          <span class="flaticon-phone-call"></span>
+          <a class="text" href="tel:+221778727942">
+            +221 77-872-79-42
+          </a>
+        </div>
+        <div class="quick-contact-item d-flex align-items-center mb-4">
+          <span class="flaticon-mail"></span>
+          <address class="text">
+            bocoumTransport@gmail.com
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

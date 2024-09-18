@@ -1,0 +1,192 @@
+/* Conteneur principal */
+.bus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Conteneur des rangées */
+.chaise-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Rangée des groupes de chaises */
+.bus-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Espacement entre les rangées */
+}
+
+/* Groupe de chaises dans une rangée */
+.bus-seat-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px; /* Espacement entre les sièges dans le même groupe */
+}
+
+/* Style pour chaque chaise */
+.chaise {
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  background: url('/assets/fauteuil.png') no-repeat center center;
+  background-size: cover;
+  border-radius: 8px;
+  margin: 5px;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  line-height: 60px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+/* Effet au survol des chaises */
+.chaise:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Numéro de place sur la chaise */
+.chaise .place-number {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* Afficher le numéro de place au survol */
+.chaise:hover .place-number {
+  opacity: 1;
+}
+
+/* Styles pour les états des chaises */
+.disponible {
+  filter: grayscale(0);
+}
+
+.selected {
+  border: 2px solid #FFC107;
+}
+
+.indisponible {
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
+
+/* Légende des états */
+.legende {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.legende div {
+  display: flex;
+  align-items: center;
+}
+
+.legende span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.disponible span {
+  background-color: #243425;
+}
+
+.selected span {
+  background-color: #FFC107;
+}
+
+.indisponible span {
+  background-color: #F44336;
+}
+
+
+/* choix-chaises.component.css */
+.form-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.payment-button {
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:hover {
+  background-color: #1976D2;
+}
+
+.error-message {
+  color: #F44336;
+  margin-top: 20px;
+  font-size: 16px;
+}

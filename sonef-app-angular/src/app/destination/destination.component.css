@@ -1,0 +1,41 @@
+.group-container {
+  max-width: 90%;
+  margin: 0 auto; /* Center container horizontally */
+}
+
+.group-title {
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.btn-outline-dark {
+  font-size: 0.9rem; /* Adjust font size as needed */
+}
+
+.btn-primary {
+  font-size: 0.9rem; /* Adjust font size as needed */
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item .btn-primary {
+  font-size: 0.8rem; /* Adjust font size as needed */
+}
+.voyage-list {
+  position: relative;
+  max-height: 600px; /* Ajustez en fonction de vos besoins */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.voyage-list.expanded {
+  max-height: none;
+}
+
+.btn-outline-primary {
+  margin-top: 10px;
+}
+

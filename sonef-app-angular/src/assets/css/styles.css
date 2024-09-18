@@ -1,0 +1,404 @@
+/* styles.css */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+     /*background-color: #f4f4f4;*/
+}
+
+.flex-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+.flex-container form {
+    text-align: center;
+}
+
+.form-group {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 200px; /* Largeur fixe pour les champs de formulaire */
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.flex-container form button {
+    padding: 12px 20px;
+    background-color: #ea6d13;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.flex-container form button:hover {
+    background-color: #ea6d13;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+.section {
+    padding: 40px 0;
+    background-color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    /* background-color: transparent; */
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navbar .logo {
+    color: #ea6d13;
+    font-size: 1.8em;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .logo:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links li a {
+    color: #ea6d13;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+    color: #fff;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #ea6d13;
+        padding: 10px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li a {
+        color: #ea6d13;
+        text-decoration: none;
+        font-size: 1.1em;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: 'Montserrat', sans-serif;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li.active a {
+        color: orange; /* Or any other desired color */
+    }
+
+
+
+    .burger {
+        display: flex;
+    }
+}
+
+/* Animation for burger menu */
+.burger.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger.toggle .line2 {
+    opacity: 0;
+}
+
+.burger.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+/* Header */
+.header {
+    background-color: black;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.header p {
+    font-size: 1.2em;
+}
+
+/* Formulaire de réservation */
+#reservation {
+    background-color: #ea6d13;
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+}
+
+#reservation h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#reservation form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#reservation label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#reservation input[type="date"],
+#reservation input[type="number"],
+#reservation select,
+#reservation textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+#reservation button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #ea6d13;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+#reservation button:hover {
+    background-color: #f0f0f0;
+}
+
+.booking-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(234, 109, 19, 0.85);
+}
+
+.booking-form h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+textarea.form-control {
+    resize: vertical; /* Permettre le redimensionnement vertical uniquement */
+}
+
+.btn-primary {
+    /* display: block; */
+    width: 10%;
+    padding: 10px;
+    background-color: #ea6d13;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 30px;
+}
+
+.btn-primary:hover {
+    background-color: #d85a0d;
+}
+
+.gallery-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-slide {
+    min-width: 100%;
+    transition: transform 0.5s ease;
+}
+.gallery-slide img {
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    width: 100%; /* Responsive */
+    max-width: 600px; /* Set a maximum width */
+    height: auto;
+}
+
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Publicités */
+.ads-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ad {
+    flex: 1;
+    min-width: 300px;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.ad img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.ad:hover {
+    transform: scale(1.05);
+}
+
+/* Ajoutez des animations pour la galerie */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.gallery-slide {
+    animation: slide 5s infinite;
+}

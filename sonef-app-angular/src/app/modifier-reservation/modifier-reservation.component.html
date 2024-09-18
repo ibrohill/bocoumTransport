@@ -1,0 +1,48 @@
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-3 animate__animated animate__fadeIn">
+    <div class="card-header bg-warning text-white">
+      <h2>Modifier la réservation</h2>
+    </div>
+    <div class="card-body">
+      <!-- Formulaire pour modifier les détails de la réservation -->
+      <form (ngSubmit)="saveChanges()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" id="nom" [(ngModel)]="nom" name="nom" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input type="text" id="prenom" [(ngModel)]="prenom" name="prenom" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Téléphone</label>
+          <input type="tel" id="telephone" [(ngModel)]="telephone" name="telephone" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="nombrePersonnes" class="form-label">Nombre de personnes</label>
+          <input type="number" id="nombrePersonnes" [(ngModel)]="nombrePersonnes" name="nombrePersonnes" class="form-control" min="1" required>
+        </div>
+
+        <!-- Sélection des chaises -->
+        <div class="mb-4">
+          <label class="form-label">Sélectionner vos chaises</label>
+          <div class="row">
+            <div *ngFor="let seat of voyage?.chaises; let i = index" class="col-2 mb-2">
+              <button type="button" class="btn"
+                      [ngClass]="{'btn-success': chaisesSelectionnees.includes(seat), 'btn-outline-secondary': !chaisesSelectionnees.includes(seat)}"
+                      (click)="toggleSeatSelection(seat)">
+                {{ seat }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sauvegarder les modifications</button>
+      </form>
+    </div>
+  </div>
+</div>

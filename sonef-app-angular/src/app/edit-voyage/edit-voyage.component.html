@@ -1,0 +1,23 @@
+<form (ngSubmit)="updateVoyage()">
+  <div>
+    <label for="depart">Départ</label>
+    <input type="text" id="depart" [(ngModel)]="voyage.depart" name="depart" required>
+  </div>
+  <div>
+    <label for="arrivee">Arrivée</label>
+    <input type="text" id="arrivee" [(ngModel)]="voyage.arrivee" name="arrivee" required>
+  </div>
+  <div>
+    <label for="date">Date</label>
+    <input type="date" id="date" [(ngModel)]="voyage.date" name="date" required>
+  </div>
+  <div>
+    <label for="heure">Heure</label>
+    <input type="time" id="heure" [(ngModel)]="voyage.heure" name="heure" required>
+  </div>
+  <div>
+    <label for="prix">Prix</label>
+    <input type="number" id="prix" [(ngModel)]="voyage.prix" name="prix" required>
+  </div>
+  <button type="submit">Modifier le Voyage</button>
+</form>
