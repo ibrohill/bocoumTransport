@@ -15,8 +15,8 @@ class CreateArretsTable extends Migration
     {
         Schema::create('arrets', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('position'); // Vous pouvez ajuster le type en fonction de la précision nécessaire
+            $table->string('quartier');
+            $table->string('rue'); // Vous pouvez ajuster le type en fonction de la précision nécessaire
             $table->unsignedBigInteger('voyage_id');
             $table->foreign('voyage_id')->references('id')->on('voyages')->onDelete('cascade');
             $table->timestamps();

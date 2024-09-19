@@ -3,16 +3,16 @@
   <table class="arret-table">
     <thead>
     <tr>
-      <th>Nom</th>
-      <th>Position</th>
+      <th>Quartier</th>
+      <th>Rue</th>
       <th>Voyage (Départ - Arrivée)</th>
       <th *ngIf="getUserRole() === 'admin'">Actions</th> <!-- Afficher la colonne d'actions seulement pour les admins -->
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let arret of arrets">
-      <td>{{ arret.nom }}</td>
-      <td>{{ arret.position }}</td>
+      <td>{{ arret.quartier }}</td>
+      <td>{{ arret.rue }}</td>
       <td>{{ arret.voyage.depart }} - {{ arret.voyage.arrivee }}</td>
       <td *ngIf="getUserRole() === 'admin'">
         <button (click)="editArret(arret)">Modifier</button>

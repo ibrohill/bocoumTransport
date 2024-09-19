@@ -73,7 +73,9 @@ class ReservationController extends Controller
             $reservation = Reservation::create($validated);
             Log::info('Réservation créée', ['reservation' => $reservation]);
 
-            return response()->json($reservation, 201);
+//            return response()->json($reservation, 201);
+            return response()->json(['id' => $reservation->id], 201);
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::error('Erreur de validation', ['errors' => $e->validator->errors()]);
             return response()->json(['errors' => $e->validator->errors()], 422);

@@ -17,8 +17,8 @@ class ArretController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
+            'quarier' => 'required|string|max:255',  // Notez l'erreur de frappe ici
+            'rue' => 'required|string|max:255',
             'voyage_id' => 'required|integer|exists:voyages,id',
         ]);
 
@@ -29,6 +29,7 @@ class ArretController extends Controller
             'arret' => $arret,
         ], 201);
     }
+
 
     public function show($id)
     {
@@ -50,8 +51,8 @@ class ArretController extends Controller
         }
 
         $validatedData = $request->validate([
-            'nom' => 'string|max:255',
-            'position' => 'string|max:255',
+            'quarier' => 'string|max:255',
+            'rue' => 'string|max:255',
             'voyage_id' => 'integer|exists:voyages,id',
         ]);
 

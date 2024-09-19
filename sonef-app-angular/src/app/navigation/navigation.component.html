@@ -9,12 +9,19 @@
           <a routerLink="/admin">Administrateur</a>
         </li>
         <li><a routerLink="/destination">Destination</a></li>
-        <li><a routerLink="/agence">Agences</a></li>
+
         <li *ngIf="getUserRole() === 'serviceClient'">
           <a routerLink="/serviceClient">Service clients</a>
         </li>
+        <li class="has-children">
+          <a href="#">Agence</a>
+          <ul class="dropdown">
+            <li><a routerLink="/agence">Position</a></li>
+            <li><a routerLink="/arretEmbarquement">Arrêts & Embarquements</a></li>
+          </ul>
+        </li>
 <!--        <li *ngIf="getUserRole() === 'admin' || getUserRole() === 'serviceClient'">-->
-<!--          <a routerLink="/arrets">Nos Arrêts</a>-->
+<!--          -->
 <!--        </li>-->
 <!--        <li *ngIf="getUserRole() === 'admin' || getUserRole() === 'serviceClient'">-->
 <!--          <a routerLink="/embarquement">Nos Embarquements</a>-->

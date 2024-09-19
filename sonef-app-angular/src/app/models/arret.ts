@@ -1,8 +1,8 @@
 // src/app/models/arret.model.ts
 export interface Arret {
   id: number;
-  nom: string;
-  position: string;
+  quartier: string;
+  rue: string;
   voyage_id: number;
   voyage?: {
     depart: string;

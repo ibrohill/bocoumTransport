@@ -10,8 +10,8 @@ class Arret extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom',
-        'position',
+        'quarier',
+        'rue',
         'voyage_id',
     ];
 

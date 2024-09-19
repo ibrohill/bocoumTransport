@@ -24,6 +24,7 @@ export class PaiementComponent implements OnInit {
   email: string = '';
   telephone: string = '';
   voyageurId: number = 0;
+  reservationId: number | null = null;
 
   private notyf = new Notyf({
     duration: 3000,
@@ -64,7 +65,7 @@ export class PaiementComponent implements OnInit {
       next: (data) => {
         this.voyage = data;
         this.prixTotal = this.voyage.prix * this.nombrePersonnes;
-
+        console.log('Voyage data:', this.voyage);
         // Récupérer les arrêts et embarquements
         this.voyagesService.getArretsByVoyageId(this.voyageId).subscribe({
           next: (data) => {
@@ -117,16 +118,47 @@ export class PaiementComponent implements OnInit {
       chaisesSelectionnees: chaisesSelectionnees
     };
 
-    this.reservationService.createReservation(reservationData)
-      .subscribe({
-        next: (response) => {
-          console.log('Réservation créée avec succès', response);
-          this.notyf.success('Réservation effectuée avec succès.');
-        },
-        error: (error) => {
-          console.error('Erreur lors de la création de la réservation', error);
-          this.notyf.error('Erreur lors de la création de la réservation.');
+    this.reservationService.createReservation(reservationData).subscribe({
+      next: (response) => {
+        console.log('Réservation créée avec succès', response);
+        console.log('Response structure:', response); // Log the full response
+
+        // Exemple de gestion de la structure de la réponse
+        if (response && response.id) {
+          this.reservationId = response.id;
+        } else if (response && response.data && response.data.id) {
+          this.reservationId = response.data.id;
+        } else {
+          console.error('ID de réservation non trouvé dans la réponse');
         }
-      });
+
+        this.notyf.success('Réservation effectuée avec succès.');
+        console.log('Reservation ID:', this.reservationId);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la création de la réservation', error);
+        this.notyf.error('Erreur lors de la création de la réservation.');
+      }
+    });
+  }
+
+  cancelReservation() {
+    if (!this.reservationId) {
+      this.notyf.error('Aucune réservation à annuler.');
+      return;
+    }
+
+    this.reservationService.deleteReservation(this.reservationId).subscribe({
+      next: (response) => {
+        console.log('Réservation annulée avec succès', response);
+        this.notyf.success('Réservation annulée.');
+        this.reservationId = null; // Réinitialiser l'ID de la réservation
+        this.router.navigate(['/voyages']); // Rediriger vers la liste des voyages ou une autre page
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'annulation de la réservation', error);
+        this.notyf.error('Erreur lors de l\'annulation de la réservation.');
+      }
+    });
   }
 }

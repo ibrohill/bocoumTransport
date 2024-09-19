@@ -1,0 +1,134 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.arrets-section, .form-section {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 40px; /* Agrandit l'espace intérieur */
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Augmente l'ombre pour un effet plus prononcé */
+}
+
+.section-title {
+  font-size: 2.5em; /* Augmente la taille du titre */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.arrets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2em; /* Augmente la taille de la police du tableau */
+}
+
+.arrets-table th, .arrets-table td {
+  padding: 20px; /* Augmente l'espace dans les cellules */
+  text-align: left;
+  border-bottom: 2px solid #ddd; /* Épaissit la bordure pour plus de visibilité */
+}
+
+.arrets-table th {
+  background-color: #f1f1f1;
+}
+
+.actions-column {
+  display: flex;
+  gap: 20px; /* Augmente l'espacement entre les boutons */
+}
+
+.edit-btn, .delete-btn {
+  padding: 10px 20px; /* Agrandit les boutons */
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em; /* Augmente la taille de la police dans les boutons */
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.add-arret-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Augmente l'espacement entre les champs du formulaire */
+}
+
+.form-input, .form-select {
+  padding: 15px; /* Augmente l'espacement dans les champs de formulaire */
+  font-size: 1.3em; /* Augmente la taille de la police */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.submit-btn {
+  padding: 15px 25px; /* Augmente la taille du bouton de soumission */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em; /* Augmente la taille de la police du bouton */
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.search-input {
+  width: 100%; /* Pour occuper toute la largeur disponible */
+  max-width: 400px; /* Largeur maximale */
+  margin-bottom: 1rem; /* Espacement inférieur */
+  padding: 0.75rem 1rem; /* Espacement intérieur */
+  font-size: 1rem; /* Taille de la police */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Transition fluide pour les effets de survol */
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Couleur de la bordure au focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25); /* Ombre accentuée au focus */
+  outline: none; /* Supprimer le contour par défaut du focus */
+}
+.search-container {
+  position: relative; /* Pour positionner l'icône à l'intérieur du conteneur */
+  max-width: 400px; /* Largeur maximale du conteneur */
+  margin-bottom: 1rem; /* Espacement inférieur */
+}
+
+.search-icon {
+  position: absolute; /* Positionnement absolu de l'icône */
+  top: 50%; /* Alignement vertical centré */
+  left: 0.75rem; /* Espacement à gauche */
+  transform: translateY(-50%); /* Centrage vertical */
+  font-size: 1.25rem; /* Taille de l'icône */
+  color: #888; /* Couleur de l'icône */
+}
+
+.search-input {
+  padding-left: 2.5rem; /* Espacement pour laisser de la place à l'icône */
+}
+.search-input::placeholder {
+  color: #aaa; /* Couleur du texte d'espace réservé */
+  font-style: italic; /* Style en italique */
+}
+
+.search-input:hover {
+  border-color: #aaa; /* Couleur de la bordure au survol */
+}
+
+.search-input:focus::placeholder {
+  color: transparent; /* Masquer le texte d'espace réservé au focus */
+}

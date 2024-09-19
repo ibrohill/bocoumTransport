@@ -13,8 +13,8 @@ export class ArretEmbarquementManagementComponent implements OnInit {
   arrets: Arret[] = [];
   voyages: Voyage[] = [];
   newArret: Partial<Arret> = {};
-  reservation: { nom: string; arret_id: number } = { nom: '', arret_id: 0 };
-  isAdmin: boolean = false; // Vous pouvez ajuster cela en fonction de la logique d'authentification
+  searchTerm: string = ''; // Ajout de la propriété pour le terme de recherche
+  isAdmin: boolean = false;
 
   constructor(
     private arretService: ArretService,
@@ -28,8 +28,13 @@ export class ArretEmbarquementManagementComponent implements OnInit {
   }
 
   loadArrets(): void {
-    this.arretService.getAllArrets().subscribe(arrets => {
-      this.arrets = arrets;
+    this.arretService.getAllArrets().subscribe({
+      next: (arrets) => {
+        this.arrets = arrets;
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des arrêts:', err);
+      }
     });
   }
 
@@ -64,5 +69,18 @@ export class ArretEmbarquementManagementComponent implements OnInit {
   checkAdminStatus(): void {
     // Logique pour vérifier si l'utilisateur est un admin
     // Exemple : this.isAdmin = this.authService.isAdmin();
+  }
+
+  filteredArrets(): Arret[] {
+    if (!this.searchTerm.trim()) {
+      return this.arrets;
+    }
+
+    const lowerSearchTerm = this.searchTerm.toLowerCase();
+
+    return this.arrets.filter(arret =>
+      arret.quartier.toLowerCase().includes(lowerSearchTerm) ||
+      arret.rue.toLowerCase().includes(lowerSearchTerm)
+    );
   }
 }

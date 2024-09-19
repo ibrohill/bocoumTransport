@@ -80,3 +80,6 @@ body {
     max-width: 80px;
   }
 }
+.btn-danger {
+  display: none;
+}

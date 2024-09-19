@@ -1,47 +1,65 @@
-<div>
-  <h2>Liste des Arrêts</h2>
-  <table>
+<app-navigation></app-navigation>
+<br><br><br><br><br><br>
+
+<div class="arrets-section">
+  <h2 class="section-title">Liste des Arrêts et Embarquement</h2>
+  <div class="search-container">
+    <i class="fa fa-search search-icon"></i>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par quartier ou rue" class="search-input">
+  </div>
+  <table class="arrets-table">
     <thead>
     <tr>
-      <th>Nom</th>
-      <th>Position</th>
+      <th>Quartier</th>
+      <th>Rue</th>
       <th>Voyage</th>
       <th *ngIf="isAdmin">Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let arret of arrets">
-      <td>{{ arret.nom }}</td>
-      <td>{{ arret.position }}</td>
+    <tr *ngFor="let arret of filteredArrets()">
+      <td>{{ arret.quartier }}</td>
+      <td>{{ arret.rue }}</td>
       <td>{{ arret.voyage?.depart }} - {{ arret.voyage?.arrivee }}</td>
-      <td *ngIf="isAdmin">
-        <button (click)="editArret(arret)">Modifier</button>
-        <button (click)="deleteArret(arret.id)">Supprimer</button>
+      <td *ngIf="isAdmin" class="actions-column">
+        <button class="edit-btn" (click)="editArret(arret)">Modifier</button>
+        <button class="delete-btn" (click)="deleteArret(arret.id)">Supprimer</button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 
-<div>
-  <h2>Ajouter un Arrêt</h2>
-  <form (ngSubmit)="addArret()">
-    <input [(ngModel)]="newArret.nom" name="nom" placeholder="Nom" required>
-    <input [(ngModel)]="newArret.position" name="position" placeholder="Position" required>
-    <select [(ngModel)]="newArret.voyage_id" name="voyage_id" required>
-      <option *ngFor="let voyage of voyages" [value]="voyage.id">{{ voyage.depart }} - {{ voyage.arrivee }}</option>
-    </select>
-    <button type="submit">Ajouter</button>
-  </form>
-</div>
 
-<div>
-  <h2>Réserver un Embarquement</h2>
-  <form (ngSubmit)="reserveEmbarquement()">
-    <input [(ngModel)]="reservation.nom" name="nom" placeholder="Nom du Passager" required>
-    <select [(ngModel)]="reservation.arret_id" name="arret_id" required>
-      <option *ngFor="let arret of arrets" [value]="arret.id">{{ arret.nom }} - {{ arret.position }}</option>
-    </select>
-    <button type="submit">Réserver</button>
-  </form>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>-->
+<!--  <h2>Réserver un Embarquement</h2>-->
+<!--  <form (ngSubmit)="reserveEmbarquement()">-->
+<!--    <input [(ngModel)]="reservation.nom" name="nom" placeholder="Nom du Passager" required>-->
+<!--    <select [(ngModel)]="reservation.arret_id" name="arret_id" required>-->
+<!--      <option *ngFor="let arret of arrets" [value]="arret.id">{{ arret.nom }} - {{ arret.position }}</option>-->
+<!--    </select>-->
+<!--    <button type="submit">Réserver</button>-->
+<!--  </form>-->
+<!--</div>-->

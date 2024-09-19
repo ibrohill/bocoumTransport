@@ -87,6 +87,12 @@
       <button type="submit" class="btn btn-success btn-block mt-4 animate__animated animate__pulse" (click)="processPayment()">
         Payer {{ prixTotal | number }} FCFA
       </button>
+      <button class="btn btn-danger btn-block mt-4 animate__animated animate__pulse" *ngIf="reservationId" (click)="cancelReservation()">
+        Annuler la réservation
+      </button>
+
+
+
     </div>
   </div>
 </div>
