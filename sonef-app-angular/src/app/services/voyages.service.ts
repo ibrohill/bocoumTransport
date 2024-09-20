@@ -95,4 +95,11 @@ export class VoyagesService {
   getEmbarquementsByVoyageId(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/${id}/embarquements`);
   }
+
+
+
+  getBusById(busId: number) {
+    return this.http.get<any>(`/api/buses/${busId}`); 
+  }
+
 }

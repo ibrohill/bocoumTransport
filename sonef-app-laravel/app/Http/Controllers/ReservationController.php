@@ -18,7 +18,7 @@ class ReservationController extends Controller
 
         if ($voyageurId) {
             $reservations = Reservation::where('voyageur_id', $voyageurId)
-                ->with('voyage.bus') // Inclure les détails du bus
+                ->with('voyage.bus')
                 ->get();
         } else {
             $reservations = Reservation::with('voyage.bus')->get(); // Inclure les détails du bus

@@ -24,7 +24,8 @@
             <p><strong>Nombre de personnes :</strong> {{ nombrePersonnes }}</p>
             <p><strong>Montant total :</strong> {{ prixTotal | number }} FCFA</p>
             <p><strong>Chaises sélectionnées :</strong> {{ chaisesSelectionnees.join(', ') }}</p>
-            <p><strong>Bus :</strong> {{ voyage.bus_id }}</p>
+            <p><strong>Bus :</strong> {{ voyage.bus?.nom || 'Bus non spécifié' }}</p>
+
           </div>
           <div *ngIf="arrets.length > 0" class="mb-4">
             <h2>Arrêts</h2>

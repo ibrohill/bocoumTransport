@@ -1,181 +1,137 @@
 <app-navigation></app-navigation>
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<div class="accordion" id="dashboardAccordion">
 
-<section class="statistics-section py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-5">Statistiques</h2>
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card text-center shadow">
-          <div class="card-body">
-            <h5 class="card-title">Nombre total de voyageurs</h5>
-            <p class="display-4 text-primary">{{ totalVoyageurs }}</p>
+  <!-- Section Statistiques -->
+  <div class="card mb-3 shadow">
+    <div class="card-header" id="headingStats">
+      <h5 class="mb-0 d-flex justify-content-between align-items-center">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseStats" aria-expanded="false" aria-controls="collapseStats">
+          <i class="fas fa-chart-bar"></i> Statistiques
+        </button>
+        <i class="fas fa-chevron-down"></i>
+      </h5>
+    </div>
+
+    <div id="collapseStats" class="collapse" aria-labelledby="headingStats" data-parent="#dashboardAccordion">
+      <div class="card-body">
+        <div class="row text-center">
+          <!-- Cartes de statistiques -->
+          <div class="col-lg-4 mb-4">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5>Nombre total de voyageurs</h5>
+                <p class="display-4 text-primary">{{ totalVoyageurs }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card text-center shadow">
-          <div class="card-body">
-            <h5 class="card-title">Nombre total de destinations</h5>
-            <p class="display-4 text-primary">{{ totalReservations }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card text-center shadow">
-          <div class="card-body">
-            <h5 class="card-title">Coût total</h5>
-            <p class="display-4 text-primary">{{ coutTotal }} XOF</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card text-center shadow">
-          <div class="card-body">
-            <h5 class="card-title">Voyages annulés</h5>
-            <p class="display-4 text-danger">{{ voyagesAnnules }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card text-center shadow">
-          <div class="card-body">
-            <h5 class="card-title">Voyages actifs</h5>
-            <p class="display-4 text-success">{{ voyagesActifs }}</p>
-          </div>
+          <!-- Autres cartes de statistiques ici -->
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!--<section class="bus-statistics-section py-5 bg-light">-->
-<!--  <div class="container">-->
-<!--    <h2 class="text-center mb-5">Statistiques des Bus</h2>-->
-<!--    <div class="row">-->
-<!--      &lt;!&ndash; Total buses &ndash;&gt;-->
-<!--      <div class="col-lg-4 mb-4">-->
-<!--        <div class="card text-center shadow">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Nombre total de bus</h5>-->
-<!--            <p class="display-4 text-primary">{{ busTotal }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+  <!-- Section Réservations -->
+  <div class="card mb-3 shadow">
+    <div class="card-header" id="headingReservations">
+      <h5 class="mb-0 d-flex justify-content-between align-items-center">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseReservations" aria-expanded="false" aria-controls="collapseReservations">
+          <i class="fas fa-list-alt"></i> Liste des Réservations
+        </button>
+        <i class="fas fa-chevron-down"></i>
+      </h5>
+    </div>
 
-<!--      &lt;!&ndash; Active buses &ndash;&gt;-->
-<!--      <div class="col-lg-4 mb-4">-->
-<!--        <div class="card text-center shadow">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Bus actifs</h5>-->
-<!--            <p class="display-4 text-success">{{ busActifs }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      &lt;!&ndash; Inactive buses &ndash;&gt;-->
-<!--      <div class="col-lg-4 mb-4">-->
-<!--        <div class="card text-center shadow">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Bus inactifs</h5>-->
-<!--            <p class="display-4 text-danger">{{ busInactifs }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-
-
-
-
-
-<section class="reservations-section py-5">
-  <div class="container">
-    <h2 class="text-center mb-5">Liste des Réservations</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover shadow rounded">
-        <thead class="bg-primary text-white">
-        <tr>
-          <th>ID</th>
-          <th>Voyageur ID</th>
-          <th>Départ</th>
-          <th>Arrivée</th>
-          <th>Date</th>
-          <th>Heure</th>
-          <th>Nombre de Personnes</th>
-          <th>Prix Total</th>
-          <th>Nom du Bus</th>
-          <th>Statut</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let reservation of reservations" class="bg-light">
-          <td>{{ reservation.idReservation }}</td>
-          <td>{{ reservation.voyageur_id }}</td>
-          <td>{{ reservation.depart }}</td>
-          <td>{{ reservation.arrivee }}</td>
-          <td>{{ reservation.dateReservation }}</td>
-          <td>{{ reservation.heure }}</td>
-          <td>{{ reservation.nombrePersonnes }}</td>
-          <td>{{ reservation.montantTotal }} XOF</td>
-          <td>{{ reservation.voyage?.bus?.nom || 'N/A' }}</td>
-          <td>{{ reservation.statut || 'N/A' }}</td>
-<!--          <td>-->
-<!--            <span class="badge badge-success" *ngIf="reservation.statut === 'Confirmé'">Confirmé</span>-->
-<!--            <span class="badge badge-warning" *ngIf="reservation.statut === 'En attente'">En attente</span>-->
-<!--            <span class="badge badge-danger" *ngIf="reservation.statut === 'Annulé'">Annulé</span>-->
-<!--          </td>-->
-        </tr>
-        </tbody>
-      </table>
+    <div id="collapseReservations" class="collapse" aria-labelledby="headingReservations" data-parent="#dashboardAccordion">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover shadow">
+            <thead class="bg-primary text-white">
+            <tr>
+              <th>ID</th>
+              <th>Voyageur ID</th>
+              <th>Départ</th>
+              <th>Arrivée</th>
+              <th>Date</th>
+              <th>Heure</th>
+              <th>Nombre de Personnes</th>
+              <th>Prix Total</th>
+              <th>Nom du Bus</th>
+              <th>Statut</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of reservations">
+              <td>{{ reservation.idReservation }}</td>
+              <td>{{ reservation.voyageur_id }}</td>
+              <td>{{ reservation.depart }}</td>
+              <td>{{ reservation.arrivee }}</td>
+              <td>{{ reservation.dateReservation }}</td>
+              <td>{{ reservation.heure }}</td>
+              <td>{{ reservation.nombrePersonnes }}</td>
+              <td>{{ reservation.montantTotal }} XOF</td>
+              <td>{{ reservation.voyage?.bus?.nom || 'N/A' }}</td>
+              <td>{{ reservation.statut || 'N/A' }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-<br><br>
-<app-bus-management></app-bus-management>
-<br><br>
-<section class="voyages-section py-5">
-  <app-add-voyage></app-add-voyage>
-  <div class="container">
-    <h2 class="text-center mb-5">Liste des Voyages</h2>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover shadow rounded">
-        <thead class="bg-primary text-white">
-        <tr>
-          <th>ID</th>
-          <th>Départ</th>
-          <th>Arrivée</th>
-          <th>Date</th>
-          <th>Heure</th>
-          <th>Prix</th>
-          <th>Bus</th>
-          <th>Statut</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let voyage of voyages" class="bg-light">
-          <td>{{ voyage.id }}</td>
-          <td>{{ voyage.depart }}</td>
-          <td>{{ voyage.arrivee }}</td>
-          <td>{{ voyage.date }}</td>
-          <td>{{ voyage.heure }}</td>
-          <td>{{ voyage.prix | currency:'XOF':'symbol' }}</td>
-          <td>{{ voyage.bus_id }}</td>
-          <td>
-            <span class="badge badge-success" *ngIf="voyage.status">Actif</span>
-            <span class="badge badge-secondary" *ngIf="!voyage.status">Inactif</span>
-          </td>
-          <td>
-            <button class="btn btn-primary btn-sm mr-2" (click)="editVoyage(voyage.id)">Modifier</button>
-            <button class="btn btn-danger btn-sm mr-2" (click)="deleteVoyage(voyage.id)">Supprimer</button>
-            <button class="btn btn-warning btn-sm" (click)="cancelVoyage(voyage.id)">Annuler</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+  <!-- Section Voyages -->
+  <div class="card mb-3 shadow">
+    <div class="card-header" id="headingVoyages">
+      <h5 class="mb-0 d-flex justify-content-between align-items-center">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseVoyages" aria-expanded="false" aria-controls="collapseVoyages">
+          <i class="fas fa-bus"></i> Liste des Voyages
+        </button>
+        <i class="fas fa-chevron-down"></i>
+      </h5>
+    </div>
+
+    <div id="collapseVoyages" class="collapse" aria-labelledby="headingVoyages" data-parent="#dashboardAccordion">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover shadow rounded">
+            <thead class="bg-primary text-white">
+            <tr>
+              <th>ID</th>
+              <th>Départ</th>
+              <th>Arrivée</th>
+              <th>Date</th>
+              <th>Heure</th>
+              <th>Prix</th>
+              <th>Bus</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let voyage of voyages" class="bg-light">
+              <td>{{ voyage.id }}</td>
+              <td>{{ voyage.depart }}</td>
+              <td>{{ voyage.arrivee }}</td>
+              <td>{{ voyage.date }}</td>
+              <td>{{ voyage.heure }}</td>
+              <td>{{ voyage.prix | currency:'XOF':'symbol' }}</td>
+              <td>{{ voyage.bus_id }}</td>
+              <td>
+                <span class="badge badge-success" *ngIf="voyage.status">Actif</span>
+                <span class="badge badge-secondary" *ngIf="!voyage.status">Inactif</span>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm mr-2" (click)="editVoyage(voyage.id)">Modifier</button>
+                <button class="btn btn-danger btn-sm mr-2" (click)="deleteVoyage(voyage.id)">Supprimer</button>
+                <button class="btn btn-warning btn-sm" (click)="cancelVoyage(voyage.id)">Annuler</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+
+</div>

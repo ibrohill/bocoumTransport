@@ -69,7 +69,8 @@ export class AdminVoyagesComponent implements OnInit {
           const voyageur = this.voyageurs.find(v => v.id === reservation.voyageur_id);
           return {
             ...reservation,
-            voyageur: voyageur || { nom: 'N/A' }
+            voyageur: voyageur || { nom: 'N/A' },
+            voyage: reservation.voyage // Inclure le voyage dans chaque réservation
           };
         });
       },
@@ -79,6 +80,7 @@ export class AdminVoyagesComponent implements OnInit {
       }
     );
   }
+
 
   getBuses() {
     this.busService.getBuses().subscribe(data => {

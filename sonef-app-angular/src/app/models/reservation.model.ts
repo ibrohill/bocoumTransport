@@ -12,10 +12,10 @@ export interface Reservation {
   nombrePersonnes: number;
   prix: number;
   chaises: number[];
-  voyage: {
-    bus: {
-      nom: string; // Nom du bus
-    }
+  voyage?: {
+    bus?: {
+      nom: string;
+    };
   };
 }
 

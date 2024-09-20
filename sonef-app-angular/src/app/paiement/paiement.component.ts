@@ -13,6 +13,7 @@ import { Notyf } from 'notyf';
 export class PaiementComponent implements OnInit {
   voyageId: number = 0;
   voyage: any;
+  bus: any;  // Ajoutez cette propriété pour stocker les informations du bus
   arrets: any[] = [];
   embarquements: any[] = [];
   nombrePersonnes: number = 1;
@@ -34,7 +35,6 @@ export class PaiementComponent implements OnInit {
       y: 'center',
     },
   });
-
   constructor(
     private route: ActivatedRoute,
     private voyagesService: VoyagesService,
@@ -61,11 +61,22 @@ export class PaiementComponent implements OnInit {
       }
     });
 
+    // Récupérer les informations du voyage
     this.voyagesService.getVoyageById(this.voyageId).subscribe({
       next: (data) => {
         this.voyage = data;
         this.prixTotal = this.voyage.prix * this.nombrePersonnes;
-        console.log('Voyage data:', this.voyage);
+
+        // Récupérer les informations du bus une fois que le voyage est récupéré
+        this.voyagesService.getBusById(this.voyage.bus_id).subscribe({
+          next: (busData) => {
+            this.bus = busData;  // Stockez les informations du bus
+          },
+          error: (err) => {
+            console.error('Erreur lors de la récupération du bus:', err);
+          }
+        });
+
         // Récupérer les arrêts et embarquements
         this.voyagesService.getArretsByVoyageId(this.voyageId).subscribe({
           next: (data) => {
@@ -91,6 +102,7 @@ export class PaiementComponent implements OnInit {
       }
     });
   }
+
 
   selectPaymentMethod(method: string) {
     this.paymentMethod = method;

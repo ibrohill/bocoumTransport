@@ -18,4 +18,9 @@ class Bus extends Model
     {
         return $this->hasMany(Chaise::class, 'bus_id');
     }
+
+    public function voyages()
+    {
+        return $this->hasMany(Voyage::class);
+    }
 }

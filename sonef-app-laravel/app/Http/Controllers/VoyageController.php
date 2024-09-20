@@ -37,11 +37,13 @@ class VoyageController extends Controller
         $voyage = Voyage::with('bus')->findOrFail($id);
 
         if ($voyage) {
+            Log::info('Bus associé:', ['bus' => $voyage->bus]);
             return response()->json($voyage);
         } else {
             return response()->json(['message' => 'Voyage non trouvé'], 404);
         }
     }
+
 
 
     public function update(Request $request, $id)
