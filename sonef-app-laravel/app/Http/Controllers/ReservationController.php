@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use App\Models\Voyage;
+use App\Mail\ReservationCancelled;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+
 
 
 class ReservationController extends Controller
@@ -223,6 +227,33 @@ class ReservationController extends Controller
             ->get();
 
         return response()->json($chaises);
+    }
+
+
+
+
+
+    public function cancelReservation($reservationId)
+    {
+        try {
+            $reservation = Reservation::findOrFail($reservationId); // Utilisez findOrFail pour gérer l'absence de réservation
+
+            $user = User::find($reservation->user_id);
+
+            if ($user) {
+                $reservation->statut = 'annulée';
+                $reservation->save();
+
+                $user->notify(new ReservationCancelled());
+                return response()->json(['message' => 'Réservation annulée avec succès.'], 200);
+            } else {
+                return response()->json(['error' => 'Utilisateur non trouvé.'], 404);
+            }
+        } catch (\Exception $e) {
+            // Log l'erreur pour des détails plus précis
+            \Log::error($e->getMessage());
+            return response()->json(['error' => 'Erreur interne du serveur.'], 500);
+        }
     }
 
 

@@ -155,4 +155,43 @@ export class AdminVoyagesComponent implements OnInit {
       });
     }
   }
+
+
+  cancelReservation(id: number) {
+    if (confirm('Êtes-vous sûr de vouloir annuler cette réservation ?')) {
+      this.reservationService.cancelReservation(id).subscribe(
+        () => {
+          this.reservations = this.reservations.filter(r => r.idReservation !== id);
+          this.notyf.success('Réservation annulée avec succès');
+        },
+        (error) => {
+          this.notyf.error('Erreur lors de l\'annulation de la réservation');
+          console.error(error); // Afficher l'erreur dans la console pour le débogage
+        }
+      );
+    }
+  }
+
+  toggleVoyageStatus(id: number) {
+    this.voyageService.toggleStatus(id).subscribe(
+      (response: any) => {
+        const voyage = this.voyages.find(v => v.id === id);
+        if (voyage) {
+          // Mets à jour le statut avec la nouvelle valeur
+          voyage.status = response.status;
+          this.notyf.success(`Voyage ${response.status === 'actif' ? 'activé' : 'désactivé'} avec succès`);
+        }
+        this.calculateStatistics();  // Recalculer les statistiques après le changement de statut
+      },
+      error => {
+        this.notyf.error('Erreur lors du changement de statut du voyage');
+        console.error(error);
+      }
+    );
+  }
+
+
+
+
+
 }

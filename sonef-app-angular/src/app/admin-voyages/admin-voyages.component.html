@@ -108,6 +108,7 @@
           <th>Prix Total</th>
           <th>Nom du Bus</th>
           <th>Statut</th>
+          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -122,17 +123,16 @@
           <td>{{ reservation.montantTotal }} XOF</td>
           <td>{{ reservation.voyage?.bus?.nom || 'N/A' }}</td>
           <td>{{ reservation.statut || 'N/A' }}</td>
-<!--          <td>-->
-<!--            <span class="badge badge-success" *ngIf="reservation.statut === 'Confirmé'">Confirmé</span>-->
-<!--            <span class="badge badge-warning" *ngIf="reservation.statut === 'En attente'">En attente</span>-->
-<!--            <span class="badge badge-danger" *ngIf="reservation.statut === 'Annulé'">Annulé</span>-->
-<!--          </td>-->
+          <td>
+            <button class="btn btn-danger" (click)="cancelReservation(reservation.idReservation)">Annuler</button>
+          </td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
+
 <br><br>
 <app-bus-management></app-bus-management>
 <br><br>
@@ -163,7 +163,9 @@
           <td>{{ voyage.date }}</td>
           <td>{{ voyage.heure }}</td>
           <td>{{ voyage.prix | currency:'XOF':'symbol' }}</td>
-          <td>{{ voyage.bus_id }}</td>
+<!--          <td>{{ voyage.bus_id }}</td>-->
+          <td>{{ voyage.bus?.nom || 'N/A' }}</td>
+
           <td>
             <span class="badge badge-success" *ngIf="voyage.status">Actif</span>
             <span class="badge badge-secondary" *ngIf="!voyage.status">Inactif</span>
@@ -171,8 +173,14 @@
           <td>
             <button class="btn btn-primary btn-sm mr-2" (click)="editVoyage(voyage.id)">Modifier</button>
             <button class="btn btn-danger btn-sm mr-2" (click)="deleteVoyage(voyage.id)">Supprimer</button>
-            <button class="btn btn-warning btn-sm" (click)="cancelVoyage(voyage.id)">Annuler</button>
+            <button
+              class="btn"
+              [ngClass]="voyage.status === 'actif' ? 'btn-secondary' : 'btn-success'"
+              (click)="toggleVoyageStatus(voyage.id)">
+              {{ voyage.status === 'actif' ? 'Désactiver' : 'Activer' }}
+            </button>
           </td>
+
         </tr>
         </tbody>
       </table>

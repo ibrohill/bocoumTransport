@@ -36,9 +36,11 @@ Route::apiResource('service-clients', ServiceClientController::class);
 
 Route::get('voyages/{id}', [VoyageController::class, 'show']);
 Route::put('voyages/{id}', [VoyageController::class, 'update']);
+
 Route::delete('voyages/{id}', [VoyageController::class, 'destroy']);
 Route::patch('/voyages/{id}/cancel', [VoyageController::class, 'cancel'])->name('voyages.cancel');
 Route::put('/voyages/{id}/status', [VoyageController::class, 'updateStatus']);
+Route::put('/voyages/{id}/toggle-status', [VoyageController::class, 'toggleStatus']);
 
 
 Route::get('rechercher', [VoyageController::class, 'rechercher']);
@@ -53,10 +55,14 @@ Route::get('/reservations/voyageur/{id}', [ReservationController::class, 'getRes
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::put('/reservations/{id}/accept', [ReservationController::class, 'acceptReservation']);
 Route::put('/reservations/{id}/refuse', [ReservationController::class, 'refuseReservation']);
-
+Route::put('reservations/{id}/cancel', [ReservationController::class, 'cancelReservation']);
 Route::get('/reservations/{id}', [ReservationController::class, 'show']);
 Route::get('/reservations/chaises-disponibles/{voyageId}', [ReservationController::class, 'getChaisesDisponibles']);
 Route::get('/reservations/voyages/{id}/chaises', [ReservationController::class, 'getChaises']);
+
+//notification
+//Route::get('/notifications', [NotificationController::class, 'index']);
+
 
 Route::get('voyages', [VoyageController::class, 'index']);
 Route::post('voyages', [VoyageController::class, 'store']);

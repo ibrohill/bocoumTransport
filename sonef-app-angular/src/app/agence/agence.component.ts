@@ -13,9 +13,11 @@ export class AgenceComponent implements OnInit {
     const map = L.map('map').setView([14.6928, -17.4467], 13); // Coordonnées de Dakar
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Ajouter un marqueur
     L.marker([14.6928, -17.4467]).addTo(map)
       .bindPopup('Localisation de l\'agence')
       .openPopup();

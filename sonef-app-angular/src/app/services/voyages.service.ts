@@ -48,10 +48,20 @@ export class VoyagesService {
 
 
 
-  ajouterVoyage(voyage: Voyage): Observable<Voyage> {
-    return this.http.post<Voyage>(this.apiUrl, voyage).pipe(catchError(this.handleError)
+  ajouterVoyage(voyage: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/ajouter`, voyage).pipe(
+      catchError(error => {
+        console.error('Erreur HTTP:', error); // Affiche l'erreur HTTP dans la console
+        return throwError(error); // Relance l'erreur pour qu'elle soit capturée dans le composant
+      })
     );
   }
+
+  toggleStatus(id: number): Observable<any> {
+    return this.http.put(`/api/voyages/${id}/toggle-status`, {}); // Utilise l'endpoint correct
+  }
+
+
 
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error);
@@ -99,7 +109,7 @@ export class VoyagesService {
 
 
   getBusById(busId: number) {
-    return this.http.get<any>(`/api/buses/${busId}`); 
+    return this.http.get<any>(`/api/buses/${busId}`);
   }
 
 }

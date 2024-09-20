@@ -19,17 +19,32 @@ class VoyageController extends Controller
     // Crée un nouveau voyage
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'depart' => 'required|string|max:255',
-            'arrivee' => 'required|string|max:255',
+        // Valider les données
+        $request->validate([
+            'depart' => 'required|string',
+            'arrivee' => 'required|string',
             'date' => 'required|date',
-
+            'heure' => 'required|date_format:H:i',
+            'places_disponibles' => 'required|integer|min:1',
+            'prix' => 'required|integer|min:0',
+            'bus_id' => 'nullable|exists:buses,id', // Assure-toi que le bus_id existe
         ]);
 
-        $voyage = Voyage::create($validatedData);
+        // Créer un nouveau voyage
+        $voyage = new Voyage();
+        $voyage->depart = $request->input('depart');
+        $voyage->arrivee = $request->input('arrivee');
+        $voyage->date = $request->input('date');
+        $voyage->heure = $request->input('heure');
+        $voyage->places_disponibles = $request->input('places_disponibles');
+        $voyage->prix = $request->input('prix');
+        $voyage->bus_id = $request->input('bus_id'); // Associer le bus au voyage
+        $voyage->status = 'active';
+        $voyage->save();
 
-        return response()->json($voyage, 201);
+        return response()->json(['message' => 'Voyage ajouté avec succès'], 201);
     }
+
 
     // Affiche les détails d'un voyage
     public function show($id)
@@ -167,5 +182,21 @@ class VoyageController extends Controller
 
         return response()->json($chaisesDisponibles);
     }
+
+    public function toggleStatus($id)
+    {
+        $voyage = Voyage::find($id);
+
+        if (!$voyage) {
+            return response()->json(['message' => 'Voyage non trouvé'], 404);
+        }
+
+        // Basculer le statut
+        $voyage->status = $voyage->status === 'actif' ? 'inactif' : 'actif';
+        $voyage->save();
+
+        return response()->json(['status' => $voyage->status, 'message' => 'Statut mis à jour avec succès']);
+    }
+
 
 }

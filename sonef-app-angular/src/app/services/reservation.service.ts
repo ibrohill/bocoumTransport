@@ -74,6 +74,9 @@ export class ReservationService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
+  cancelReservation(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}/cancel`, {});
+  }
 }
 
 

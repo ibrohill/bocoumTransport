@@ -27,40 +27,38 @@ class VoyageSeeder extends Seeder
         ];
 
         $startDate = Carbon::today();
-        $endDate = $startDate->copy()->addDays(6); // Next 7 days
+        $endDate = $startDate->copy()->addDays(6); // Générer des voyages pour 7 jours
 
         $voyageIndex = 0;
-        $priceMap = []; // To store the prices for each route
+        $priceMap = [];
 
-        // Define exact price options
+        // Prix prédéfinis pour certaines routes spécifiques
         $priceOptions = [3000, 4000, 5000, 6000, 7000];
 
-        // Loop through each day in the next 7 days
         for ($date = $startDate; $date <= $endDate; $date->addDay()) {
             foreach ($cities as $index => $city) {
-                // Select the bus based on the current voyage index and total number of buses
                 $bus = $buses->get($voyageIndex % $totalBuses);
-                $destination = $cities[($index + 1) % count($cities)]; // Circular route
+                $destination = $cities[($index + 1) % count($cities)];
 
-                // Check if a price has already been set for this route
                 if (isset($priceMap[$city][$destination])) {
                     $price = $priceMap[$city][$destination];
                 } else {
-                    // Set price based on the route
+                    // Définir un prix en fonction de la route
                     if ($city == 'Dakar' && $destination == 'Thiès') {
                         $price = 3000;
                     } elseif ($city == 'Dakar' && $destination == 'Saint-Louis') {
                         $price = 5000;
                     } else {
-                        // Select a random price from the predefined options
                         $price = $priceOptions[array_rand($priceOptions)];
                     }
 
-                    // Store the price for this route to ensure consistency for both times (08:00 and 17:00)
                     $priceMap[$city][$destination] = $price;
                 }
 
-                // Create two voyages per day per city
+                // Statut par défaut 'actif'
+                $status = 'actif';
+
+                // Créer deux voyages par jour (à 08h00 et 17h00)
                 Voyage::create([
                     'depart' => $city,
                     'arrivee' => $destination,
@@ -68,7 +66,7 @@ class VoyageSeeder extends Seeder
                     'heure' => '08:00:00',
                     'places_disponibles' => 56,
                     'prix' => $price,
-                    'status' => 'active',
+                    'status' => $status, // Statut par défaut ici
                     'bus_id' => $bus->id,
                 ]);
 
@@ -79,7 +77,7 @@ class VoyageSeeder extends Seeder
                     'heure' => '17:00:00',
                     'places_disponibles' => 56,
                     'prix' => $price,
-                    'status' => 'active',
+                    'status' => $status, // Statut par défaut pour le deuxième voyage aussi
                     'bus_id' => $bus->id,
                 ]);
 
@@ -87,8 +85,8 @@ class VoyageSeeder extends Seeder
             }
         }
     }
-
 }
+
 
 
 //php artisan db:seed --class=VoyageSeeder

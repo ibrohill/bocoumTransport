@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VoyagesService } from '../services/voyages.service';
 import { Router } from '@angular/router';
 import { CityService } from "../services/city.service";
-import { Notyf } from 'notyf'; // Importation de Notyf
+import { BusService } from "../services/bus.service"; // BusService pour récupérer les bus
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-add-voyage',
@@ -13,52 +14,58 @@ import { Notyf } from 'notyf'; // Importation de Notyf
 export class AddVoyageComponent implements OnInit {
   voyageForm: FormGroup;
   cities: any[] = [];
-  private notyf = new Notyf({
-    duration: 3000, // Durée d'affichage de la notification
-    ripple: true,   // Effet ripple
-    position: {
-      x: 'right',
-      y: 'top',
-    },
-  });
-
+  buses: any[] = []; // Ajouter la liste des bus
+  private notyf = new Notyf();
 
   constructor(
     private fb: FormBuilder,
     private voyagesService: VoyagesService,
     private router: Router,
-    private cityService: CityService
+    private cityService: CityService,
+    private busService: BusService // Service pour récupérer les bus
   ) {
     this.voyageForm = this.fb.group({
       depart: ['', Validators.required],
       arrivee: ['', Validators.required],
       date: ['', Validators.required],
       heure: ['', Validators.required],
+      places_disponibles: [56, Validators.required],
+      prix: ['', Validators.required],
+      bus_id: ['', Validators.required], // Associer un bus
     });
   }
 
   ngOnInit(): void {
+    // Récupérer les villes
     this.cityService.getCities().subscribe(data => {
       this.cities = data;
+    });
+
+    // Récupérer les bus
+    this.busService.getBuses().subscribe(data => {
+      this.buses = data;
     });
   }
 
   onSubmit(): void {
+    // Affiche les valeurs du formulaire dans la console
+    console.log('Données du formulaire:', this.voyageForm.value);
+
+    // Vérifie si le formulaire est valide
     if (this.voyageForm.valid) {
       this.voyagesService.ajouterVoyage(this.voyageForm.value).subscribe({
         next: (response) => {
-          console.log('Voyage ajouté avec succès:', response);
-          this.notyf.success('Voyage ajouté avec succès'); // Notification de succès
+          console.log('Réponse du serveur:', response); // Affiche la réponse du serveur dans la console
+          this.notyf.success('Voyage ajouté avec succès');
           this.router.navigate(['/recherche']);
         },
         error: (error) => {
-          console.error('Erreur lors de l\'ajout du voyage:', error);
-          this.notyf.error('Une erreur est survenue lors de l\'ajout du voyage'); // Notification d'erreur
+          console.error('Erreur lors de l\'ajout du voyage:', error); // Affiche l'erreur dans la console
+          this.notyf.error('Erreur lors de l\'ajout du voyage');
         }
       });
     } else {
-      console.log('Formulaire invalide');
-      this.notyf.error('Formulaire invalide. Veuillez remplir tous les champs requis.'); // Notification d'erreur pour formulaire invalide
+      console.warn('Le formulaire est invalide:', this.voyageForm.errors); // Affiche un avertissement si le formulaire est invalide
     }
   }
 
