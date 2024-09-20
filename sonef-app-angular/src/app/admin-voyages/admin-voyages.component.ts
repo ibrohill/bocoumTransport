@@ -82,6 +82,7 @@ export class AdminVoyagesComponent implements OnInit {
   }
 
 
+
   getBuses() {
     this.busService.getBuses().subscribe(data => {
       console.log('Données des bus:', data); // Vérifiez la structure des données ici
