@@ -70,7 +70,7 @@ export class AdminVoyagesComponent implements OnInit {
           return {
             ...reservation,
             voyageur: voyageur || { nom: 'N/A' },
-            voyage: reservation.voyage // Inclure le voyage dans chaque réservation
+            voyage: reservation.voyage
           };
         });
       },
@@ -80,8 +80,6 @@ export class AdminVoyagesComponent implements OnInit {
       }
     );
   }
-
-
 
   getBuses() {
     this.busService.getBuses().subscribe(data => {

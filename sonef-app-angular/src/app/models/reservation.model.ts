@@ -17,5 +17,6 @@ export interface Reservation {
       nom: string;
     };
   };
+  bus_id: number;
 }
 
