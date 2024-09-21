@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ContactService } from '../services/contact.service'; // Import du service ContactService
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { Notyf } from 'notyf';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -10,7 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class ContactComponent {
   contact = { name: '', email: '', message: '' };
-
+  private notyf = new Notyf();
   constructor(private contactService: ContactService) {} // Injection du service
 
   sendEmail() {
