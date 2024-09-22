@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SCANNER_HOME = tool 'Sonar'  // Assurez-vous que 'Sonar' correspond au nom de l'installation dans Jenkins
+        SCANNER_HOME = tool 'SCANNER_HOME'  // Assurez-vous que 'Sonar' correspond au nom de l'installation dans Jenkins
     }
 
     stages {
