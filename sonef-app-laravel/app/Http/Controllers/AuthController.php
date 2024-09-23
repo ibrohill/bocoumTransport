@@ -65,4 +65,37 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+
+
+    public function updateProfile(Request $request) {
+        \Log::info('Received profile update request:', $request->all());
+
+        // Validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'password' => 'nullable|string|min:8', // Assurez-vous que le mot de passe est nullable
+        ]);
+
+        // Récupérer l'utilisateur authentifié
+        $user = $request->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $user->name = $validatedData['name'];
+
+        // Mettre à jour le mot de passe uniquement s'il est fourni
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validatedData['password']);
+        }
+
+        $user->save();
+
+        return response()->json(['message' => 'Profil mis à jour avec succès', 'user' => $user], 200);
+    }
+
+
+
+
 }

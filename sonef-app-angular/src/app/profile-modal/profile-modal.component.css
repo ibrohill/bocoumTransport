@@ -1,29 +1,28 @@
 .modal-header {
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .modal-body {
   padding: 20px;
 }
 
-.modal-footer {
-  background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
-}
-
 .error-message {
-  color: #ff0000;
-  font-size: 14px;
+  color: red;
+  font-size: 12px;
 }
 
 .btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.modal-content {
-  pointer-events: auto; /* Assurez-vous que les événements sont activés */
-  opacity: 1; /* Assurez-vous que l'opacité est correcte */
+.form-group {
+  margin-bottom: 15px;
 }
-

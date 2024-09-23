@@ -71,14 +71,31 @@ export class AuthService {
     );
   }
 
-  updateProfile(name: string, password: string): Observable<any> {
-    const token = localStorage.getItem('access_token');
-    return this.http.put<any>(`${this.apiUrl}/user`, { name, password }, {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      })
-    });
+  // updateProfile(name: string, password: string): Observable<any> {
+  //   const token = localStorage.getItem('access_token');
+  //   return this.http.put<any>(`${this.apiUrl}/user`, { name, password }, {
+  //     headers: new HttpHeaders({
+  //       Authorization: `Bearer ${token}`
+  //     })
+  //   });
+  // }
+
+
+  updateProfile(name: string, password?: string): Observable<any> {
+    const token = localStorage.getItem('access_token'); // Assurez-vous de récupérer le bon token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const payload: any = { name };
+    if (password) {
+      payload.password = password;
+    }
+
+    return this.http.put(`${this.apiUrl}/profile`, payload, { headers }); // Correction de l'URL
   }
+
+
+
+
 
   getUser(): Observable<any> {
     const token = localStorage.getItem('access_token');

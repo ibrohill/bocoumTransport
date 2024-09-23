@@ -24,7 +24,7 @@ import { BusManagementComponent } from './bus-management/bus-management.componen
 import { VoyageurFormComponent } from './voyageur-form/voyageur-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileModalComponent } from './profile-modal/profile-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgenceComponent } from './agence/agence.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReplyComponent } from './reply/reply.component';
@@ -36,6 +36,7 @@ import { ModifierReservationComponent } from './modifier-reservation/modifier-re
 import { ArretManagementComponent } from './arret-management/arret-management.component';
 import { EmbarquementManagementComponent } from './embarquement-management/embarquement-management.component';
 import { ArretEmbarquementManagementComponent } from './arret-embarquement-management/arret-embarquement-management.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { ArretEmbarquementManagementComponent } from './arret-embarquement-manag
     ArretManagementComponent,
     EmbarquementManagementComponent,
     ArretEmbarquementManagementComponent,
+    ProfileEditComponent, 
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,7 @@ import { ArretEmbarquementManagementComponent } from './arret-embarquement-manag
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-
+    NgbModalModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

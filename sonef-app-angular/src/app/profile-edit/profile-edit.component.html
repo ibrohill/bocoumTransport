@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <h2>Modifier le profil</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input id="name" type="text" formControlName="name" class="form-control" placeholder="Entrez votre nom" />
+      <div *ngIf="profileForm.get('name')?.invalid && (profileForm.get('name')?.touched || profileForm.get('name')?.dirty)" class="error-message">
+        <div *ngIf="profileForm.get('name')?.errors?.['required']">Le nom est requis.</div>
+        <div *ngIf="profileForm.get('name')?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Nouveau mot de passe</label>
+      <input id="password" type="password" formControlName="password" class="form-control" placeholder="Entrez un nouveau mot de passe" />
+      <div *ngIf="profileForm.get('password')?.invalid && (profileForm.get('password')?.touched || profileForm.get('password')?.dirty)" class="error-message">
+        <div *ngIf="profileForm.get('password')?.errors?.['required']">Le mot de passe est requis.</div>
+        <div *ngIf="profileForm.get('password')?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer le mot de passe</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirmez le mot de passe" />
+      <div *ngIf="profileForm.hasError('mismatch') && (profileForm.get('confirmPassword')?.touched || profileForm.get('confirmPassword')?.dirty)" class="error-message">
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="profileForm.invalid" class="btn btn-success">Mettre à jour</button>
+  </form>
+</div>

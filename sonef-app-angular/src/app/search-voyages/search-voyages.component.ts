@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Notyf } from 'notyf';
 import { CityService } from "../services/city.service";
 import { VoyagesService } from "../services/voyages.service";
-import { AuthService } from "../services/auth.service"; // Importez AuthService
+import { AuthService } from "../services/auth.service";
+import { DialogflowService } from '../services/dialogflow.service';
 
 @Component({
   selector: 'app-search-voyages',
@@ -20,7 +21,11 @@ export class SearchVoyagesComponent implements OnInit {
   filteredCitiesArrivee: any[] = [];
   searchDepart: string = '';
   searchArrivee: string = '';
-
+  isChatOpen: boolean = false;
+  userMessage: string = '';
+  responses: string[] = [];
+  message: string = '';
+  chatResponses: string[] = [];
 
   private notyf = new Notyf({
     duration: 3000,
@@ -36,7 +41,8 @@ export class SearchVoyagesComponent implements OnInit {
     private router: Router,
     private cityService: CityService,
     private voyageService: VoyagesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialogflowService: DialogflowService
   ) {
     this.searchForm = this.fb.group({
       depart: [''],
@@ -51,18 +57,29 @@ export class SearchVoyagesComponent implements OnInit {
     this.loadVoyages();
   }
 
-  // getCities(): void {
-  //   console.log('getCities called');
-  //   this.cityService.getCities().subscribe({
-  //     next: (data) => {
-  //       console.log('Cities retrieved:', data);
-  //       this.cities = data;
-  //     },
-  //     error: (err) => {
-  //       this.notyf.error('Impossible de récupérer les villes.');
-  //     }
-  //   });
-  // }
+  toggleChat(): void {
+    this.isChatOpen = !this.isChatOpen;
+  }
+
+  closeChat(): void {
+    this.isChatOpen = false;
+  }
+
+  sendToDialogflow(message: string): void {
+    this.dialogflowService.sendMessage(message).subscribe(response => {
+      console.log('Response from Dialogflow:', response);
+      this.chatResponses.push(response.fulfillmentText); // Afficher la réponse dans le chat
+    }, error => {
+      console.error('Error sending message:', error);
+    });
+  }
+
+  sendMessage(): void {
+    if (this.message.trim()) {
+      this.sendToDialogflow(this.message); // Envoyer le message à Dialogflow
+      this.message = ''; // Réinitialiser le message après envoi
+    }
+  }
 
   getCities(): void {
     // console.log('getCities called');

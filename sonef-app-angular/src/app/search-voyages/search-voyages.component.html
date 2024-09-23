@@ -65,6 +65,31 @@
       </div>
     </div>
   </div>
+
+  <div class="chat-icon" (click)="toggleChat()">
+    <i class="fas fa-comment"></i>
+  </div>
+
+  <div *ngIf="isChatOpen" class="chat-window">
+    <div class="chat-header">
+      <h3>Bienvenue dans le chat !</h3>
+      <button class="close-button" (click)="closeChat()">×</button>
+    </div>
+
+    <div class="chat-messages">
+      <div *ngFor="let response of chatResponses" class="chat-message">
+        <p>{{ response }}</p>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input [(ngModel)]="message" placeholder="Tapez votre message" />
+      <button (click)="sendMessage()">Envoyer</button>
+    </div>
+  </div>
+
+
+
 </div>
 
 <br><br>

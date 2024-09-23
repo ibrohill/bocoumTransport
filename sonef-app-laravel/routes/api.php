@@ -15,22 +15,24 @@ use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ArretController;
 use App\Http\Controllers\EmbarquementController;
-
+use App\Http\Controllers\DialogflowController;
 
 
 // Routes accessibles uniquement par les administrateurs
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
-    // Ajoutez d'autres routes réservées aux administrateurs ici
 });
 
 // Routes accessibles uniquement par les utilisateurs
 Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
-
 });
 
-// Routes accessibles par tout le monde
+Route::put('/profile', [AuthController::class, 'updateProfile']);
 
+
+
+
+// Routes accessibles par tout le monde
 Route::apiResource('administrateurs', AdministrateurController::class);
 Route::apiResource('service-clients', ServiceClientController::class);
 
@@ -73,9 +75,12 @@ Route::get('/voyages/chaises-disponibles/{voyageId}', [VoyageController::class, 
 Route::post('register', [AuthController::class, 'register']);
 // Route::post('login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::put('/profile', [AuthController::class, 'updateProfile']);
+
 
 Route::middleware('auth:sanctum')->get('user', [AuthController::class, 'user']);
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->put('/profile', [AuthController::class, 'updateProfile']);
 
 
 Route::post('/paiement', [PaymentController::class, 'processPayment']);
@@ -118,3 +123,7 @@ Route::delete('embarquements/{id}', [EmbarquementController::class, 'destroy']);
 
 //voyageur
 Route::get('/voyageurs/user/{id}', [VoyageurController::class, 'getVoyageurByUserId']);
+
+
+//chat
+Route::post('/dialogflow-webhook', [DialogflowController::class, 'handleWebhook']);

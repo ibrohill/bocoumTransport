@@ -11,7 +11,8 @@
         <p><strong>Nom :</strong> {{ user.name }}</p>
         <p><strong>Email :</strong> {{ user.email }}</p>
         <p><strong>Rôle :</strong> {{ user.role }}</p>
-        <button class="btn btn-primary edit-button" (click)="openProfileModal()">Modifier</button>
+        <button class="btn btn-primary edit-button" [routerLink]="['/profile-edit']">Modifier</button>
+
       </div>
     </div>
     <ng-template #loading>

@@ -1,24 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/auth.service';
-
 import { Notyf } from 'notyf';
 
 @Component({
-  selector: 'app-profile-modal',
-  templateUrl: './profile-modal.component.html',
-  styleUrls: ['./profile-modal.component.css']
+  selector: 'app-profile-edit',
+  templateUrl: './profile-edit.component.html',
+  styleUrls: ['./profile-edit.component.css']
 })
-export class ProfileModalComponent {
+export class ProfileEditComponent implements OnInit {
   profileForm: FormGroup;
   private notyf = new Notyf();
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    public activeModal: NgbActiveModal
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.profileForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -26,9 +20,9 @@ export class ProfileModalComponent {
     }, {
       validator: this.passwordMatchValidator
     });
+  }
 
-
-    // Charger les infos de l'utilisateur
+  ngOnInit(): void {
     this.loadUserData();
   }
 
@@ -40,7 +34,6 @@ export class ProfileModalComponent {
     });
   }
 
-
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
@@ -50,10 +43,16 @@ export class ProfileModalComponent {
   onSubmit(): void {
     if (this.profileForm.valid) {
       const { name, password } = this.profileForm.value;
-      this.authService.updateProfile(name, password).subscribe(
+      const payload: any = { name };
+
+      // Ajouter le mot de passe uniquement s'il est rempli
+      if (password) {
+        payload.password = password;
+      }
+
+      this.authService.updateProfile(payload.name, payload.password).subscribe(
         () => {
           this.notyf.success('Profil mis à jour avec succès !');
-          this.activeModal.close();
         },
         error => {
           this.notyf.error('Erreur lors de la mise à jour du profil.');
@@ -64,4 +63,7 @@ export class ProfileModalComponent {
       this.notyf.error('Veuillez remplir tous les champs correctement.');
     }
   }
+
+
+
 }

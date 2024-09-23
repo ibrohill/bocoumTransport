@@ -31,6 +31,7 @@ import {ArretManagementComponent} from "./arret-management/arret-management.comp
 import {
   ArretEmbarquementManagementComponent
 } from "./arret-embarquement-management/arret-embarquement-management.component";
+import {ProfileEditComponent} from "./profile-edit/profile-edit.component";
 
 
 const routes: Routes = [
@@ -63,6 +64,8 @@ const routes: Routes = [
   { path: 'arrets', component: ArretManagementComponent },
   { path: 'embarquements', component: EmbarquementManagementComponent },
   { path: 'arretEmbarquement', component: ArretEmbarquementManagementComponent },
+  { path: 'profile-edit', component: ProfileEditComponent },
+
 
   { path: '**', redirectTo: '/recherche' }
 ];
