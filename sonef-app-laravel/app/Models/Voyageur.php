@@ -10,9 +10,7 @@ class Voyageur extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom',
-        'prenom',
-        'email',
         'telephone',
+        'cni'
     ];
 }

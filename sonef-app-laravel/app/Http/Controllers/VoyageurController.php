@@ -9,17 +9,15 @@ class VoyageurController extends Controller
 {
     public function index()
     {
-        // Logique pour afficher la liste des voyages
-        $voyages = Voyageur::all(); // Exemple de récupération des données
-        return response()->json($voyages);
+        // Logique pour afficher la liste des voyageurs
+        $voyageurs = Voyageur::all();
+        return response()->json($voyageurs);
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:voyageurs',
+            'cni' => 'required|string|max:20|unique:voyageurs',
             'telephone' => 'required|string|max:20',
         ]);
 
@@ -38,9 +36,7 @@ class VoyageurController extends Controller
         $voyageur = Voyageur::find($id);
         if ($voyageur) {
             $validatedData = $request->validate([
-                'nom' => 'sometimes|required|string|max:255',
-                'prenom' => 'sometimes|required|string|max:255',
-                'email' => 'sometimes|required|email|max:255|unique:voyageurs,email,'.$id,
+                'cni' => 'sometimes|required|string|max:20|unique:voyageurs,cni,'.$id,
                 'telephone' => 'sometimes|required|string|max:20',
             ]);
 

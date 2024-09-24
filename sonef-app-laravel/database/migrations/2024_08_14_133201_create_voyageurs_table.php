@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('voyageurs', function (Blueprint $table) {
             $table->id('id');
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('email')->unique();
+            $table->string('cni')->unique(); // Ajoutez le champ CNI
             $table->string('telephone');
             $table->timestamps();
         });
